@@ -111,7 +111,7 @@
   };
 
   fileSystems."/home/vasary/projects" = {
-    device = "10.10.0.4:/mnt/Safe/projects";
+    device = "10.10.10.4:/mnt/Safe/projects";
     fsType = "nfs";
     options = [
       "rw"
