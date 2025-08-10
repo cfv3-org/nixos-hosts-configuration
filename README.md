@@ -21,6 +21,35 @@ Remote development machine for writing code, running containers, and managing pr
   This ensures that source code and important data are **safe, backed up, and available from any device**.
 - Pre-installed developer tools: `git`, `kubectl`, `helm`, `docker-compose`, `werf`, `talosctl`, `jq`, `yq`, `direnv`, etc.
 
+### 🏗️ `ci-runner`
+
+**Purpose:**  
+Dedicated **GitHub Actions self-hosted runner** optimized for building, testing, and deploying projects in Kubernetes environments.
+
+**Key points:**
+- **Host OS**: NixOS (latest kernel, QEMU guest optimizations enabled).
+- **Remote access** via `OpenSSH` (public key authentication only).
+- **Docker** installed and enabled for containerized CI workloads.
+- **Pre-installed CI/CD tools**:  
+  `git`, `werf`, `kubectl`, `curl`, `wget`, `gnupg`, `systemd`.
+- **GitHub Actions runner service** (`lab-runner`):
+  - Registered to `https://github.com/cfv3-org`
+  - Token stored securely at `/etc/github-runner/token_lab`
+  - Runs as dedicated user `github-runner` (in `docker` group).
+- **Multiple network interfaces**:
+  - **`ens18`** — primary: DHCP, default route, DNS enabled.
+  - **`ens19`** — secondary: DHCP, no default route, no DNS (lab/secondary network).
+- **Security**:
+  - Password authentication disabled.
+  - Root login allowed via SSH key only.
+  - `sudo` without password for wheel group.
+- **Locale support**: English (default) and Russian.
+- **Timezone**: `Europe/Berlin`.
+
+**Access:**
+- SSH: `github-runner@<primary-ip>`  
+  *(public key authentication only)*
+
 ---
 
 ## 🛠 Usage
@@ -68,6 +97,9 @@ ssh vasary@<workbench-ip>
 │   └── workbench/
 │       └── workspace/
 │           └── configuration.nix  # NixOS config for 'workbench'
+│   └── ci-runner/
+│       └── workspace/
+│           └── configuration.nix  # NixOS config for 'ci-runner'
 ├── home/
 │   └── vasary/
 │       └── home.nix            # Home Manager config for user 'vasary'
@@ -83,7 +115,7 @@ ssh vasary@<workbench-ip>
 
 ## 📌 Roadmap
 - [x] Make `workbench`
-- [ ] Add `ci-runner`
+- [x] Add `ci-runner`
 - [ ] Load SSH keys from config
 
 ---
