@@ -95,11 +95,9 @@ ssh vasary@<workbench-ip>
 ├── flake.nix                  # Main flake definition
 ├── hosts/
 │   └── workbench/
-│       └── workspace/
-│           └── configuration.nix  # NixOS config for 'workbench'
+│       └── configuration.nix  # NixOS config for 'workbench'
 │   └── ci-runner/
-│       └── workspace/
-│           └── configuration.nix  # NixOS config for 'ci-runner'
+│       └── configuration.nix  # NixOS config for 'ci-runner'
 ├── home/
 │   └── vasary/
 │       └── home.nix            # Home Manager config for user 'vasary'

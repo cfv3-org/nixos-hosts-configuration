@@ -5,6 +5,20 @@
     username = "vasary";
     homeDirectory = "/home/vasary";
     stateVersion = "25.05";
+    packages = with pkgs; [
+      git
+      curl
+      wget
+      jq
+      yq
+      docker-compose
+      helm
+      kubectl
+      helmfile
+      talosctl
+      werf
+      direnv
+    ];
   };
 
   programs = {
