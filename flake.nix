@@ -15,11 +15,19 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, vscode-server, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      vscode-server,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
-    in {
+    in
+    {
       nixosConfigurations = {
         workbench = nixpkgs.lib.nixosSystem {
           inherit system;

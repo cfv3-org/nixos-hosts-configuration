@@ -5,7 +5,9 @@
       enable = true;
       networks = {
         "10-ens3" = {
-          matchConfig = { Name = "ens3"; };
+          matchConfig = {
+            Name = "ens3";
+          };
           linkConfig = {
             RequiredForOnline = "no";
           };
@@ -17,8 +19,8 @@
           addresses = [
             { Address = "192.168.50.2/24"; }
           ];
-          routes = [];
-          dns = [];
+          routes = [ ];
+          dns = [ ];
         };
 
         "20-ens4" = {

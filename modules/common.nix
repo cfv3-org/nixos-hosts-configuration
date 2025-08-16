@@ -1,8 +1,16 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 
@@ -33,7 +41,11 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "virtio_pci" "virtio_blk" "virtio_net" ];
+      availableKernelModules = [
+        "virtio_pci"
+        "virtio_blk"
+        "virtio_net"
+      ];
     };
   };
 

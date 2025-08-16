@@ -7,7 +7,11 @@
       vasary = {
         isNormalUser = true;
         description = "Workbench user";
-        extraGroups = [ "wheel" "docker" "users" ];
+        extraGroups = [
+          "wheel"
+          "docker"
+          "users"
+        ];
         home = "/home/vasary";
         createHome = true;
         initialPassword = "!";

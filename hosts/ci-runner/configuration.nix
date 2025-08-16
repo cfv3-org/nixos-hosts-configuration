@@ -1,4 +1,11 @@
-{ config, modulesPath, lib, pkgs, ... }: {
+{
+  config,
+  modulesPath,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -53,7 +60,11 @@
         isNormalUser = true;
         description = "GitHub Actions Runner";
         extraGroups = [ "docker" ];
-        packages = with pkgs; [ git werf kubectl ];
+        packages = with pkgs; [
+          git
+          werf
+          kubectl
+        ];
         home = "/home/github-runner";
         createHome = true;
       };
@@ -66,7 +77,7 @@
       };
     };
 
-    groups.github-runner = {};
+    groups.github-runner = { };
     mutableUsers = false;
   };
 
@@ -114,6 +125,9 @@
     defaultLocale = "en_US.UTF-8";
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   system.stateVersion = "25.05";
 }

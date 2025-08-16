@@ -18,6 +18,7 @@
       talosctl
       werf
       direnv
+      nixfmt-rfc-style
     ];
   };
 
