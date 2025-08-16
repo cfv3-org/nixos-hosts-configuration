@@ -19,6 +19,10 @@
       werf
       direnv
       nixfmt-rfc-style
+      nodejs_latest
+      corepack
+      typescript
+      eslint
     ];
   };
 
