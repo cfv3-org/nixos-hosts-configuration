@@ -19,10 +19,14 @@
       werf
       direnv
       nixfmt-rfc-style
-      nodejs_latest
-      corepack
-      typescript
-      eslint
+      jetbrains.idea-community-bin
+      jetbrains-mono
+      nerd-fonts.jetbrains-mono
+#      jetbrains.datagrip/
+#      jetbrains.phpstorm//
+      jetbrains.jdk
+      telegram-desktop
+      nixfmt-rfc-style
     ];
   };
 
