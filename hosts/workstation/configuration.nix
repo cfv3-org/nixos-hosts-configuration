@@ -115,6 +115,9 @@ dconf.settings = {
   };
 
   programs = {
+    dconf = {
+      enable = true
+    };
     firefox = {
       enable = true;
     };
@@ -162,6 +165,16 @@ dconf.settings = {
     font-manager
   ];
 
+dconf.settings = {
+  "org/gnome/desktop/input-sources" = {
+    sources = [
+      (lib.gvariant.mkTuple [ "xkb" "us" ])
+      (lib.gvariant.mkTuple [ "xkb" "ru" ])
+    ];
+    xkb-options = [ "grp:ctrl_shift_toggle" ];
+  };
+};
+
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     jetbrains-mono
@@ -170,6 +183,15 @@ dconf.settings = {
     nerd-fonts.noto
     nerd-fonts.hack
     nerd-fonts.ubuntu
+
+
+  inter
+  sf-pro
+  recursive-mono
+
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
   ];
 
   security = {
