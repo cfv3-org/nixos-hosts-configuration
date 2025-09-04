@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -29,15 +34,6 @@
     hostName = "workstation";
     networkmanager = {
       enable = true;
-      unmanaged = [ "wlp91s0" ];
-    };
-    wireless = {
-      enable = true;
-      networks = {
-        "Vasary" = {
-          psk = "36299104178767417451";
-        };
-      };
     };
   };
 
@@ -57,18 +53,6 @@
       LC_TIME = "de_DE.UTF-8";
     };
   };
-
-programs.dconf.enable = true;
-
-dconf.settings = {
-  "org/gnome/desktop/input-sources" = {
-    sources = [
-      (lib.gvariant.mkTuple [ "xkb" "us" ])
-      (lib.gvariant.mkTuple [ "xkb" "ru" ])
-    ];
-    xkb-options = [ "grp:win_space_toggle" ];
-  };
-};
 
   console = {
     useXkbConfig = true;
@@ -105,6 +89,15 @@ dconf.settings = {
       enable = true;
       user = "vasary";
     };
+
+    resolved = {
+      enable = true;
+      extraConfig = ''
+        [Resolve]
+        DNS=10.10.0.2
+        Domains=~cfv3.org
+      '';
+    };
   };
 
   systemd = {
@@ -115,11 +108,17 @@ dconf.settings = {
   };
 
   programs = {
-    dconf = {
-      enable = true
+    chromium = {
+      enable = true;
+      extraOpts = {
+        "HomepageLocation" = "http://start.cfv3.org";
+        "HomepageIsNewTabPage" = false;
+        "RestoreOnStartup" = 4;
+        "RestoreOnStartupURLs" = [ "http://start.cfv3.org" ];
+      };
     };
     firefox = {
-      enable = true;
+      enable = false;
     };
     zsh = {
       enable = true;
@@ -157,42 +156,44 @@ dconf.settings = {
     gnumake
     bashInteractive
     zsh
+    dig
+    oh-my-zsh
+    zsh
+    zsh-completions
+    zsh-powerlevel10k
+    zsh-syntax-highlighting
+    zsh-history-substring-search
+    zsh-autosuggestions
+    zsh-completions
+    gnome-extension-manager
     mangohud
     protonup-qt
     lutris
     bottles
-    heroic
     font-manager
+    podman-compose
+    toolbox
+    distrobox
   ];
 
-dconf.settings = {
-  "org/gnome/desktop/input-sources" = {
-    sources = [
-      (lib.gvariant.mkTuple [ "xkb" "us" ])
-      (lib.gvariant.mkTuple [ "xkb" "ru" ])
+  fonts = {
+    fontconfig = {
+      enable = true;
+    };
+
+    packages = with pkgs; [
+      jetbrains-mono
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.noto
+      nerd-fonts.hack
+      nerd-fonts.ubuntu
+      inter
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
     ];
-    xkb-options = [ "grp:ctrl_shift_toggle" ];
   };
-};
-
-  fonts.fontconfig.enable = true;
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    nerd-fonts.fira-code
-    nerd-fonts.droid-sans-mono
-    nerd-fonts.noto
-    nerd-fonts.hack
-    nerd-fonts.ubuntu
-
-
-  inter
-  sf-pro
-  recursive-mono
-
-  noto-fonts
-  noto-fonts-cjk
-  noto-fonts-emoji
-  ];
 
   security = {
     rtkit.enable = true;

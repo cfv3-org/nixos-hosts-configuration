@@ -1,4 +1,9 @@
-{ pkgs, lib, vscode-server, ... }:
+{
+  pkgs,
+  lib,
+  vscode-server,
+  ...
+}:
 {
   imports = [ vscode-server.nixosModules.default ];
 
