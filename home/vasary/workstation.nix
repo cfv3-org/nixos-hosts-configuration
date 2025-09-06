@@ -73,8 +73,8 @@
     "org/gnome/shell/extensions/netspeedsimplified" = {
       chooseiconset = 2;
       fontmode = 1;
-      mode = 5;
-      textalign = 1;
+      mode = 2;
+      textalign = 2;
       wpos = 0;
       wposext = 1;
       limitunit = 0;
