@@ -118,6 +118,7 @@
       talosctl
       werf
       direnv
+      nix-direnv
       unzip
       nixfmt-rfc-style
 
@@ -199,6 +200,7 @@
 
       initContent = ''
         export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+        eval "$(direnv hook zsh)"
       '';
 
       oh-my-zsh = {
