@@ -71,15 +71,15 @@
       "legacy-tray-enabled" = true;
     };
     "org/gnome/shell/extensions/netspeedsimplified" = {
-      chooseiconset = lib.hm.gvariant.mkInt32 2;
-      fontmode = lib.hm.gvariant.mkInt32 1;
-      mode = lib.hm.gvariant.mkInt32 5;
-      textalign = lib.hm.gvariant.mkInt32 1;
-      wpos = lib.hm.gvariant.mkInt32 0;
-      wposext = lib.hm.gvariant.mkInt32 1;
-      limitunit = lib.hm.gvariant.mkInt32 0;
-      refreshtime = lib.hm.gvariant.mkDouble 2.0;
-      minwidth = lib.hm.gvariant.mkDouble 2.0;
+      chooseiconset = 2;
+      fontmode = 1;
+      mode = 5;
+      textalign = 1;
+      wpos = 0;
+      wposext = 1;
+      limitunit = 0;
+      refreshtime = 2;
+      minwidth = 2;
 
       iconstoright = false;
       isvertical = true;

@@ -34,6 +34,9 @@
     hostName = "workstation";
     networkmanager = {
       enable = true;
+      wifi = {
+        powersave = false;
+      };
     };
   };
 
@@ -170,6 +173,8 @@
 
     pavucontrol
     easyeffects
+
+    iw
   ];
 
   fonts = {
