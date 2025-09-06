@@ -77,12 +77,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
     };
 
     displayManager.autoLogin = {
@@ -108,32 +102,33 @@
   };
 
   programs = {
-      gamemode = {
+    gamemode = {
+      enable = true;
+    };
+    steam = {
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      enable = true;
+      gamescopeSession = {
         enable = true;
       };
-          steam = {
-            enable = true;
-            gamescopeSession = {
-              enable = true;
-            };
-            remotePlay = {
-              openFirewall = true;
-            };
-            dedicatedServer = {
-              openFirewall = true;
-            };
-          };
+      remotePlay = {
+        openFirewall = true;
+      };
+      dedicatedServer = {
+        openFirewall = true;
+      };
+    };
     ssh = {
       startAgent = false;
     };
     chromium = {
       enable = true;
-    extraOpts = {
-      "HomepageLocation" = "http://start.cfv3.org";
-      "HomepageIsNewTabPage" = false;
-      "RestoreOnStartup" = 4;
-      "RestoreOnStartupURLs" = [ "http://start.cfv3.org" ];
-    };
+      extraOpts = {
+        "HomepageLocation" = "http://start.cfv3.org";
+        "HomepageIsNewTabPage" = false;
+        "RestoreOnStartup" = 4;
+        "RestoreOnStartupURLs" = [ "http://start.cfv3.org" ];
+      };
     };
     firefox = {
       enable = false;
@@ -159,10 +154,7 @@
     gnumake
     bashInteractive
     dig
-    zsh
     oh-my-zsh
-    zsh
-    zsh-completions
     zsh-powerlevel10k
     zsh-syntax-highlighting
     zsh-history-substring-search
@@ -175,6 +167,9 @@
     podman-compose
     toolbox
     distrobox
+
+    pavucontrol
+    easyeffects
   ];
 
   fonts = {
@@ -212,10 +207,17 @@
     };
   };
 
-#  fileSystems."/mnt/warehouse" = {
-#    device = "/dev/disk/by-uuid/496C-7C42";
-#    fsType = "ext4";
-#  };
+  fileSystems."/mnt/warehouse" = {
+    device = "/dev/disk/by-uuid/eb1a4d30-9372-4645-b5c6-67004a6df912";
+    fsType = "ext4";
+    options = [
+      "nofail"
+      "noatime"
+      "x-systemd.device-timeout=10s"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=1min"
+    ];
+  };
 
   system.stateVersion = "25.05";
 }
