@@ -7,6 +7,11 @@ The configuration is modular and designed to be reproducible on different hosts.
 
 ## Hosts
 
+### 🖥️ `workstation`
+
+**Purpose:**  
+Main development machine for writing code, running containers, and managing projects and games.
+
 ### 🖥️ `workbench`
 
 **Purpose:**  
@@ -114,6 +119,7 @@ ssh vasary@<workbench-ip>
 ## 📌 Roadmap
 - [x] Make `workbench`
 - [x] Add `ci-runner`
+- [x] Add `workstation`
 - [ ] Load SSH keys from config
 
 ---

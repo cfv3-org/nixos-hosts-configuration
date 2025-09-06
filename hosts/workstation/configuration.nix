@@ -108,38 +108,38 @@
   };
 
   programs = {
+      gamemode = {
+        enable = true;
+      };
+          steam = {
+            enable = true;
+            gamescopeSession = {
+              enable = true;
+            };
+            remotePlay = {
+              openFirewall = true;
+            };
+            dedicatedServer = {
+              openFirewall = true;
+            };
+          };
     ssh = {
       startAgent = false;
     };
     chromium = {
       enable = true;
-      extraOpts = {
-        "HomepageLocation" = "http://start.cfv3.org";
-        "HomepageIsNewTabPage" = false;
-        "RestoreOnStartup" = 4;
-        "RestoreOnStartupURLs" = [ "http://start.cfv3.org" ];
-      };
+    extraOpts = {
+      "HomepageLocation" = "http://start.cfv3.org";
+      "HomepageIsNewTabPage" = false;
+      "RestoreOnStartup" = 4;
+      "RestoreOnStartupURLs" = [ "http://start.cfv3.org" ];
+    };
     };
     firefox = {
       enable = false;
     };
     zsh = {
       enable = true;
-    };
-    gamemode = {
-      enable = true;
-    };
-    steam = {
-      enable = true;
-      gamescopeSession = {
-        enable = true;
-      };
-      remotePlay = {
-        openFirewall = true;
-      };
-      dedicatedServer = {
-        openFirewall = true;
-      };
     };
   };
 
@@ -158,8 +158,8 @@
     gnupg
     gnumake
     bashInteractive
-    zsh
     dig
+    zsh
     oh-my-zsh
     zsh
     zsh-completions
@@ -170,14 +170,11 @@
     zsh-completions
     gnome-extension-manager
     mangohud
-    protonup-qt
-    lutris
-    bottles
+
     font-manager
     podman-compose
     toolbox
     distrobox
-    bitwarden-desktop
   ];
 
   fonts = {
@@ -214,6 +211,11 @@
       ];
     };
   };
+
+#  fileSystems."/mnt/warehouse" = {
+#    device = "/dev/disk/by-uuid/496C-7C42";
+#    fsType = "ext4";
+#  };
 
   system.stateVersion = "25.05";
 }

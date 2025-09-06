@@ -58,7 +58,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.vasary = import ./home/vasary/home.nix;
+                users.vasary = import ./home/vasary/workstation.nix;
               };
             }
           ];
