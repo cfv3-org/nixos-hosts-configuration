@@ -62,18 +62,33 @@
       notifications-enabled = true;
       notifications-hide-when-no-notifications = false;
     };
+    "org/gnome/shell/extensions/appindicator" = {
+      "icon-brightness" = 0;
+      "icon-contrast" = 0;
+      "icon-opacity" = 240;
+      "icon-saturation" = 0;
+      "icon-size" = 20;
+      "legacy-tray-enabled" = true;
+    };
     "org/gnome/shell/extensions/netspeedsimplified" = {
-      chooseiconset = 2;
-      fontmode = 2;
+      chooseiconset = lib.hm.gvariant.mkInt32 2;
+      fontmode = lib.hm.gvariant.mkInt32 1;
+      mode = lib.hm.gvariant.mkInt32 5;
+      textalign = lib.hm.gvariant.mkInt32 1;
+      wpos = lib.hm.gvariant.mkInt32 0;
+      wposext = lib.hm.gvariant.mkInt32 1;
+      limitunit = lib.hm.gvariant.mkInt32 0;
+      refreshtime = lib.hm.gvariant.mkDouble 2.0;
+      minwidth = lib.hm.gvariant.mkDouble 2.0;
+
       iconstoright = false;
       isvertical = true;
       lockmouseactions = true;
-      mode = 4;
       restartextension = false;
       reverseindicators = true;
       shortenunits = true;
-      textalign = 1;
       togglebool = false;
+      hideindicator = false;
     };
     "org/gnome/shell" = {
       disable-user-extensions = false;
