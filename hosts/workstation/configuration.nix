@@ -13,6 +13,10 @@
   ];
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    extraModprobeConfig = ''
+      options mt7921e disable_aspm=1
+    '';
     loader = {
       systemd-boot = {
         enable = true;
