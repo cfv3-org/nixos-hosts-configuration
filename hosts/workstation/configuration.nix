@@ -108,6 +108,9 @@
   };
 
   programs = {
+    ssh = {
+      startAgent = false;
+    };
     chromium = {
       enable = true;
       extraOpts = {
@@ -174,6 +177,7 @@
     podman-compose
     toolbox
     distrobox
+    bitwarden-desktop
   ];
 
   fonts = {
