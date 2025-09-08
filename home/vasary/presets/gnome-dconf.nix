@@ -78,7 +78,7 @@
       wposext = 0;
       limitunit = 0;
       refreshtime = 1;
-      minwidth = 2;
+      minwidth = 8.0;
 
       iconstoright = false;
       isvertical = true;
@@ -98,6 +98,7 @@
         "advanced-weather@sanjai.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "netspeedsimplified@prateekmedia.extension"
+        "Vitals@CoreCoding.com"
       ];
     };
     "org/gnome/shell/keybindings" = {
@@ -133,6 +134,25 @@
     "org/gnome/desktop/background" = {
       picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
       picture-options = "zoom";
+    };
+    "org/gnome/shell/extensions/vitals" = {
+      fixed-widths = true;
+      hide-zeros = false;
+      icon-style = 0;
+      include-static-gpu-info = true;
+      memory-measurement = 1;
+      menu-centered = true;
+      show-battery = false;
+      show-fan = false;
+      show-gpu = true;
+      show-memory = true;
+      show-network = false;
+      show-processor = true;
+      show-storage = true;
+      show-temperature = true;
+      show-voltage = false;
+      update-time = 2;
+      use-higher-precision = false;
     };
   };
 }

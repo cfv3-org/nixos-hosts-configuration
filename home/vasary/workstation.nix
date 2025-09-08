@@ -47,6 +47,7 @@
       gnomeExtensions.appindicator
       gnomeExtensions.net-speed-simplified
       gnomeExtensions.bluetooth-battery-meter
+      gnomeExtensions.vitals
 
       protonup-qt
       lutris
