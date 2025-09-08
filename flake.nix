@@ -47,6 +47,22 @@
             }
           ];
         };
+
+        workstation = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/workstation/configuration.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.vasary = import ./home/vasary/workstation.nix;
+              };
+            }
+          ];
+        };
       };
     };
 }
