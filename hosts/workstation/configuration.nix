@@ -9,6 +9,7 @@
   imports = [
     ../../modules/virtualisation.nix
     ../../modules/users.nix
+    ../../modules/i18n.nix
     ./hardware-configuration.nix
   ];
 
@@ -62,24 +63,10 @@
 
   time.timeZone = "Europe/Berlin";
 
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "de_DE.UTF-8";
-      LC_IDENTIFICATION = "de_DE.UTF-8";
-      LC_MEASUREMENT = "de_DE.UTF-8";
-      LC_MONETARY = "de_DE.UTF-8";
-      LC_NAME = "de_DE.UTF-8";
-      LC_NUMERIC = "de_DE.UTF-8";
-      LC_PAPER = "de_DE.UTF-8";
-      LC_TELEPHONE = "de_DE.UTF-8";
-      LC_TIME = "de_DE.UTF-8";
-    };
-  };
-
   console = {
     useXkbConfig = true;
   };
+
   services = {
     xserver = {
       enable = true;
@@ -113,7 +100,7 @@
       enable = true;
       extraConfig = ''
         [Resolve]
-        DNS=10.10.0.2
+        DNS=10.10.0.2 8.8.8.8
         Domains=~cfv3.org
       '';
     };
@@ -127,24 +114,12 @@
   };
 
   programs = {
-    gamemode = {
-      enable = true;
-    };
     steam = {
       extraCompatPackages = [ pkgs.proton-ge-bin ];
       enable = true;
-      gamescopeSession = {
-        enable = true;
-      };
-      remotePlay = {
-        openFirewall = true;
-      };
-      dedicatedServer = {
-        openFirewall = true;
-      };
-    };
-    ssh = {
-      startAgent = false;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
     };
     chromium = {
       enable = true;
@@ -153,70 +128,13 @@
         "RestoreOnStartup" = 5;
       };
     };
-    firefox = {
-      enable = false;
-    };
-    zsh = {
-      enable = true;
-    };
+    ssh.startAgent = false;
+    gamemode.enable = true;
+    firefox.enable = false;
+    zsh.enable = true;
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    chromium
-    vscode
-    git
-    gnupg
-    gnumake
-    bashInteractive
-    dig
-    oh-my-zsh
-    zsh-powerlevel10k
-    zsh-syntax-highlighting
-    zsh-history-substring-search
-    zsh-autosuggestions
-    zsh-completions
-    gnome-extension-manager
-    mangohud
-
-    font-manager
-    podman-compose
-    toolbox
-    distrobox
-
-    pavucontrol
-    easyeffects
-
-    iw
-
-    alacritty
-  ];
-
-  fonts = {
-    fontconfig = {
-      enable = true;
-    };
-
-    packages = with pkgs; [
-      jetbrains-mono
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.noto
-      nerd-fonts.hack
-      nerd-fonts.ubuntu
-      inter
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-    ];
-  };
+  environment.systemPackages = with pkgs; [];
 
   security = {
     rtkit.enable = true;
@@ -251,6 +169,8 @@
       "x-systemd.idle-timeout=1min"
     ];
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.05";
 }
