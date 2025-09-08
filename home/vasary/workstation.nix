@@ -50,7 +50,7 @@
 
       protonup-qt
       lutris
-      bottles
+
       bitwarden-desktop
 
       thunderbird-bin
