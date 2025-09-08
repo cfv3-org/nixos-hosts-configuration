@@ -72,7 +72,6 @@
       font-manager
       pavucontrol
       easyeffects
-      alacritty
       podman-compose
       distrobox
       iw
@@ -83,19 +82,21 @@
       nerd-fonts.noto
       nerd-fonts.hack
       nerd-fonts.ubuntu
+      nerd-fonts.fantasque-sans-mono
       inter
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
+      fastfetch
+
+      kitty
     ];
   };
 
   fonts.fontconfig.enable = true;
 
   home.file.".config/easyeffects/input/meetings.json".source = ./presets/easyeffects/voice_noise_reduction.json;
-    home.sessionVariables = {
-      SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock";
-    };
+  home.file.".config/kitty/kitty.conf".source = ./presets/kitty/kitty.conf;
 
   programs = {
     chromium = {
@@ -143,9 +144,9 @@
         extended = true;
         ignoreAllDups = true;
       };
-#         export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
-      initContent = ''
 
+      initContent = ''
+        export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
         eval "$(direnv hook zsh)"
       '';
 
