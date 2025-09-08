@@ -37,6 +37,7 @@
       signal-desktop
       slack
       zoom-us
+      whatsapp-for-linux
 
       gnome-extension-manager
       gnomeExtensions.burn-my-windows
