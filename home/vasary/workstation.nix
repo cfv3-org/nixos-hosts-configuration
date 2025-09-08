@@ -91,7 +91,11 @@
   };
 
   fonts.fontconfig.enable = true;
+
   home.file.".config/easyeffects/input/meetings.json".source = ./presets/easyeffects/voice_noise_reduction.json;
+    home.sessionVariables = {
+      SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock";
+    };
 
   programs = {
     chromium = {
@@ -131,6 +135,7 @@
       shellAliases = {
         k = "kubectl";
         ll = "eza --icons=always -l";
+        docker-compose = "podman-compose";
       };
 
       history = {
@@ -138,9 +143,9 @@
         extended = true;
         ignoreAllDups = true;
       };
-
+#         export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
       initContent = ''
-        export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+
         eval "$(direnv hook zsh)"
       '';
 
