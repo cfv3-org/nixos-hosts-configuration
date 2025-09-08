@@ -43,7 +43,6 @@
       gnomeExtensions.burn-my-windows
       gnomeExtensions.clipboard-indicator
       gnomeExtensions.quick-settings-tweaker
-      gnomeExtensions.advanced-weather-companion
       gnomeExtensions.appindicator
       gnomeExtensions.net-speed-simplified
       gnomeExtensions.bluetooth-battery-meter

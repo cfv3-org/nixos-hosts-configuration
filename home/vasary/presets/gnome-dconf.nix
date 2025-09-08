@@ -95,7 +95,6 @@
         "quick-settings-tweaks@qwreey"
         "burn-my-windows@schneegans.github.com"
         "clipboard-indicator@tudmotu.com"
-        "advanced-weather@sanjai.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "netspeedsimplified@prateekmedia.extension"
         "Vitals@CoreCoding.com"
