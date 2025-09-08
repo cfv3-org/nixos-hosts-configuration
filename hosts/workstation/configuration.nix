@@ -32,6 +32,22 @@
       enable = true;
       enable32Bit = true;
     };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings.General.Experimental = true;
+    };
+  };
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      xdgOpenUsePortal = true;
+    };
+    mime.defaultApplications = {
+      "x-scheme-handler/terminal" = "alacritty.desktop";
+    };
   };
 
   networking = {
@@ -84,6 +100,8 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
     };
 
     displayManager.autoLogin = {
@@ -132,9 +150,7 @@
       enable = true;
       extraOpts = {
         "HomepageLocation" = "http://start.cfv3.org";
-        "HomepageIsNewTabPage" = false;
-        "RestoreOnStartup" = 4;
-        "RestoreOnStartupURLs" = [ "http://start.cfv3.org" ];
+        "RestoreOnStartup" = 5;
       };
     };
     firefox = {
@@ -179,6 +195,8 @@
     easyeffects
 
     iw
+
+    alacritty
   ];
 
   fonts = {
@@ -211,10 +229,10 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 2d";
     };
     settings = {
-    auto-optimise-store = true;
+      auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
