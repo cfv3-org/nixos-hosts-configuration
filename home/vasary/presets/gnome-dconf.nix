@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   ...
 }:
 
@@ -129,5 +130,9 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       ];
     };
+    "org/gnome/desktop/background" = {
+          picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
+          picture-options = "zoom";
+        };
   };
 }
