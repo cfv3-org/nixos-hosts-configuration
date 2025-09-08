@@ -74,9 +74,9 @@
       mode = 2;
       textalign = 2;
       wpos = 0;
-      wposext = 1;
+      wposext = 0;
       limitunit = 0;
-      refreshtime = 2;
+      refreshtime = 1;
       minwidth = 2;
 
       iconstoright = false;
