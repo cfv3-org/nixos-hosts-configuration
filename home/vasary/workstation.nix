@@ -100,6 +100,8 @@
   home.file.".config/kitty/kitty.conf".source = ./presets/kitty/kitty.conf;
   home.file."Pictures/Wallpapers/wallpaper.jpg".source = ./../../media/wallpappers/wallpaper.jpg;
 
+  services.easyeffects.enable = true;
+
   programs = {
     chromium = {
       enable = true;
@@ -107,9 +109,8 @@
         "nngceckbapebfimnlniiiahkandclblb"
       ];
     };
-    gnome-shell = {
-      enable = true;
-    };
+
+    gnome-shell.enable = true;
 
     git = {
       enable = true;
