@@ -32,6 +32,7 @@
       jetbrains.datagrip
       jetbrains.phpstorm
       jetbrains.jdk
+      jetbrains.goland
 
       telegram-desktop
       signal-desktop
@@ -84,6 +85,7 @@
       nerd-fonts.hack
       nerd-fonts.ubuntu
       nerd-fonts.fantasque-sans-mono
+      nerd-fonts.jetbrains-mono
       inter
       noto-fonts
       noto-fonts-cjk-sans
