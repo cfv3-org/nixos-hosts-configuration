@@ -38,7 +38,7 @@
       signal-desktop
       slack
       zoom-us
-      whatsapp-for-linux
+      zapzap
 
       gnome-extension-manager
       gnomeExtensions.burn-my-windows
@@ -51,6 +51,8 @@
 
       protonup-qt
       lutris
+      gamemode
+      mangohud
 
       bitwarden-desktop
 

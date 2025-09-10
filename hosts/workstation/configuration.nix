@@ -114,6 +114,20 @@
   };
 
   programs = {
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = {
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        };
+        general = {
+            desiredgov = "performance";
+            inhibit_screensaver = 0;
+        };
+      };
+    };
     steam = {
       extraCompatPackages = [ pkgs.proton-ge-bin ];
       enable = true;
@@ -129,7 +143,6 @@
       };
     };
     ssh.startAgent = false;
-    gamemode.enable = true;
     firefox.enable = false;
     zsh.enable = true;
   };
@@ -169,6 +182,8 @@
       "x-systemd.idle-timeout=1min"
     ];
   };
+
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   nixpkgs.config.allowUnfree = true;
 
