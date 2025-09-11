@@ -8,6 +8,7 @@
 {
   imports = [
     ../../modules/virtualisation.nix
+    ../../modules/ai.nix
     ../../modules/users.nix
     ../../modules/i18n.nix
     ./hardware-configuration.nix
@@ -147,8 +148,6 @@
     firefox.enable = false;
     zsh.enable = true;
   };
-
-  environment.systemPackages = with pkgs; [];
 
   security = {
     rtkit.enable = true;
