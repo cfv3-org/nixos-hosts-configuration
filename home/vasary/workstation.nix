@@ -52,6 +52,7 @@
       protonup-qt
       lutris
       gamemode
+      gamemode.lib
       mangohud
 
       bitwarden-desktop
@@ -107,14 +108,15 @@
   services.easyeffects.enable = true;
 
   programs = {
+    gnome-shell.enable = true;
+
     chromium = {
       enable = true;
       extensions = [
+        # Bitwarden
         "nngceckbapebfimnlniiiahkandclblb"
       ];
     };
-
-    gnome-shell.enable = true;
 
     git = {
       enable = true;

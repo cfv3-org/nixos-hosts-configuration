@@ -153,5 +153,120 @@
       update-time = 2;
       use-higher-precision = false;
     };
+
+    "org/gnome/shell/world-clocks" = {
+      locations = [
+        (lib.hm.gvariant.mkVariant (
+          lib.hm.gvariant.mkTuple [
+            (lib.hm.gvariant.mkUint32 2)
+            (lib.hm.gvariant.mkVariant (
+              lib.hm.gvariant.mkTuple [
+                "Moscow"
+                "UUWW"
+                true
+                [
+                  (lib.hm.gvariant.mkTuple [
+                    0.97127572873484425
+                    0.65042604039431762
+                  ])
+                ]
+                [
+                  (lib.hm.gvariant.mkTuple [
+                    0.97305983920281813
+                    0.65651530216830811
+                  ])
+                ]
+              ]
+            ))
+          ]
+        ))
+        (lib.hm.gvariant.mkVariant (
+          lib.hm.gvariant.mkTuple [
+            (lib.hm.gvariant.mkUint32 2)
+            (lib.hm.gvariant.mkVariant (
+              lib.hm.gvariant.mkTuple [
+                "Bishkek"
+                "UCFM"
+                true
+                [
+                  (lib.hm.gvariant.mkTuple [
+                    0.74827598759191005
+                    1.3020204740030903
+                  ])
+                ]
+                [
+                  (lib.hm.gvariant.mkTuple [
+                    0.74827598759191005
+                    1.3020204740030903
+                  ])
+                ]
+              ]
+            ))
+          ]
+        ))
+      ];
+    };
+    "org/gnome/clocks" = {
+      world-clocks = [
+        ([
+          (lib.hm.gvariant.mkDictionaryEntry [
+            "location"
+            (lib.hm.gvariant.mkVariant (
+              lib.hm.gvariant.mkTuple [
+                (lib.hm.gvariant.mkUint32 2)
+                (lib.hm.gvariant.mkVariant (
+                  lib.hm.gvariant.mkTuple [
+                    "Moscow"
+                    "UUWW"
+                    true
+                    [
+                      (lib.hm.gvariant.mkTuple [
+                        0.97127572873484425
+                        0.65042604039431762
+                      ])
+                    ]
+                    [
+                      (lib.hm.gvariant.mkTuple [
+                        0.97305983920281813
+                        0.65651530216830811
+                      ])
+                    ]
+                  ]
+                ))
+              ]
+            ))
+          ])
+        ])
+        ([
+          (lib.hm.gvariant.mkDictionaryEntry [
+            "location"
+            (lib.hm.gvariant.mkVariant (
+              lib.hm.gvariant.mkTuple [
+                (lib.hm.gvariant.mkUint32 2)
+                (lib.hm.gvariant.mkVariant (
+                  lib.hm.gvariant.mkTuple [
+                    "Bishkek"
+                    "UCFM"
+                    true
+                    [
+                      (lib.hm.gvariant.mkTuple [
+                        0.74827598759191005
+                        1.3020204740030903
+                      ])
+                    ]
+                    [
+                      (lib.hm.gvariant.mkTuple [
+                        0.74827598759191005
+                        1.3020204740030903
+                      ])
+                    ]
+                  ]
+                ))
+              ]
+            ))
+          ])
+        ])
+      ];
+    };
   };
 }

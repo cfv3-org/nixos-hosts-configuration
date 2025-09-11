@@ -100,7 +100,7 @@
       enable = true;
       extraConfig = ''
         [Resolve]
-        DNS=10.10.0.2 8.8.8.8
+        DNS=10.10.0.2 192.168.178.1 8.8.8.8
         Domains=~cfv3.org
       '';
     };
@@ -124,7 +124,7 @@
         };
         general = {
             desiredgov = "performance";
-            inhibit_screensaver = 0;
+            inhibit_screensaver = 1;
         };
       };
     };
@@ -138,6 +138,7 @@
     chromium = {
       enable = true;
       extraOpts = {
+        "PasswordManagerEnabled" = false;
         "HomepageLocation" = "http://start.cfv3.org";
         "RestoreOnStartup" = 5;
       };
@@ -147,7 +148,7 @@
     zsh.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [];
 
   security = {
     rtkit.enable = true;
@@ -160,7 +161,7 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 2d";
+      options = "--delete-older-than 1d";
     };
     settings = {
       auto-optimise-store = true;
