@@ -8,7 +8,7 @@
 
   services = {
     ollama = {
-      enable = true;
+      enable = false;
       loadModels = [
         "codellama:7b-instruct-q4_1"
       ];
