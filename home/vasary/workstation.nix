@@ -96,6 +96,8 @@
       fastfetch
 
       kitty
+
+      lollypop
     ];
   };
 

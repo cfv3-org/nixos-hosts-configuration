@@ -153,7 +153,12 @@
       update-time = 2;
       use-higher-precision = false;
     };
-
+    "org/gnome/desktop/applications/media" = {
+      player = "org.gnome.Lollypop.desktop";
+    };
+    "org/gnome/desktop/applications/audio" = {
+      exec = "lollypop %U";
+    };
     "org/gnome/shell/world-clocks" = {
       locations = [
         (lib.hm.gvariant.mkVariant (

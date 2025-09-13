@@ -20,14 +20,12 @@
       options mt7921e disable_aspm=1
     '';
     loader = {
-      systemd-boot = {
-        enable = true;
-      };
-      efi = {
-        canTouchEfiVariables = true;
-      };
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [ ];
 
   hardware = {
     graphics = {
@@ -49,6 +47,11 @@
     };
     mime.defaultApplications = {
       "x-scheme-handler/terminal" = "alacritty.desktop";
+      "audio/mpeg" = [ "org.gnome.Lollypop.desktop" ];
+      "audio/flac" = [ "org.gnome.Lollypop.desktop" ];
+      "audio/ogg" = [ "org.gnome.Lollypop.desktop" ];
+      "audio/wav" = [ "org.gnome.Lollypop.desktop" ];
+      "audio/x-m4a" = [ "org.gnome.Lollypop.desktop" ];
     };
   };
 
@@ -69,18 +72,13 @@
   };
 
   services = {
+    printing.enable = true;
+    pulseaudio.enable = false;
+
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
-    };
-
-    printing = {
-      enable = true;
-    };
-
-    pulseaudio = {
-      enable = false;
     };
 
     pipewire = {
@@ -124,8 +122,8 @@
           end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
         };
         general = {
-            desiredgov = "performance";
-            inhibit_screensaver = 1;
+          desiredgov = "performance";
+          inhibit_screensaver = 1;
         };
       };
     };
@@ -180,6 +178,22 @@
       "x-systemd.device-timeout=10s"
       "x-systemd.automount"
       "x-systemd.idle-timeout=1min"
+    ];
+  };
+
+  fileSystems."/home/vasary/Music" = {
+    device = "10.10.0.4:/mnt/archive/media/music";
+    fsType = "nfs";
+    options = [
+      "noauto"
+      "x-systemd.automount"
+      "_netdev"
+      "vers=4.1"
+      "proto=tcp"
+      "hard"
+      "nconnect=4"
+      "fsc"
+      "noatime"
     ];
   };
 
