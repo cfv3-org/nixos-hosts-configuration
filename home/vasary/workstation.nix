@@ -107,6 +107,11 @@
     ./presets/easyeffects/voice_noise_reduction.json;
   home.file.".config/kitty/kitty.conf".source = ./presets/kitty/kitty.conf;
   home.file."Pictures/Wallpapers/wallpaper.jpg".source = ./../../media/wallpappers/wallpaper.jpg;
+  home.file.".config/git/ignore".text = ''
+    .idea/
+    .vscode/
+    .direnv/
+  '';
 
   services.easyeffects.enable = true;
 
@@ -134,6 +139,7 @@
         core.autocrlf = "input";
         fetch.prune = true;
         rebase.autoStash = true;
+        core.excludesFile = "~/.config/git/ignore";
       };
     };
 
