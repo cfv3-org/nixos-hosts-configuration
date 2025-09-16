@@ -31,7 +31,11 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [
+    pciutils
+    mesa-demos
+    vulkan-tools
+  ];
 
   hardware = {
     graphics = {
@@ -42,6 +46,14 @@
       enable = true;
       powerOnBoot = true;
       settings.General.Experimental = true;
+    };
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
 
@@ -85,6 +97,7 @@
       enable = true;
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
+      videoDrivers = [ "nvidia" ];
     };
 
     pipewire = {
