@@ -118,6 +118,16 @@
   programs = {
     gnome-shell.enable = true;
 
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-backgroundremoval
+        obs-backgroundblur
+        obs-shaderfilter
+        obs-composite-blur
+      ];
+    };
+
     chromium = {
       enable = true;
       extensions = [

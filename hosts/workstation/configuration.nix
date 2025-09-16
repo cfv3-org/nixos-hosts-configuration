@@ -16,9 +16,15 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+
+    kernelModules = [ "v4l2loopback" ];
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+
     extraModprobeConfig = ''
       options mt7921e disable_aspm=1
+      options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1
     '';
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
