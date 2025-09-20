@@ -55,6 +55,7 @@
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
+    enableAllFirmware = true;
   };
 
   xdg = {
@@ -217,8 +218,19 @@
   };
 
   powerManagement.cpuFreqGovernor = "schedutil";
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.05";
 }
+
+36299104178767417451
+
+46820599215768636746
+
