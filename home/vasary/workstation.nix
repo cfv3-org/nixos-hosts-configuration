@@ -27,6 +27,7 @@
       nix-direnv
       unzip
       nixfmt-rfc-style
+      htop
 
       jetbrains.idea-community-bin
       jetbrains.datagrip
@@ -100,9 +101,9 @@
 
       lollypop
 
-          pciutils
-          mesa-demos
-          vulkan-tools
+      pciutils
+      mesa-demos
+      vulkan-tools
     ];
   };
 
@@ -122,6 +123,7 @@
 
   programs = {
     gnome-shell.enable = true;
+    firefox.enable = false;
 
     vscode = {
       enable = true;
@@ -144,15 +146,6 @@
           "intelephense.format.enable" = true;
         };
       };
-    };
-
-    obs-studio = {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        obs-backgroundremoval
-        obs-shaderfilter
-        obs-composite-blur
-      ];
     };
 
     chromium = {
