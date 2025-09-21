@@ -43,7 +43,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.vasary = import ./home/vasary/home.nix;
+                users.vasary = import ./home/users/vasary/home.nix;
               };
             }
           ];
@@ -64,7 +64,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.${userName} = import ./home/${userName}/workstation.nix;
+                  users.${userName} = import ./home/users/${userName}/workstation.nix;
                 };
               }
             )
