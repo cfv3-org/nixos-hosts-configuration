@@ -22,6 +22,7 @@
     ../../modules/pipewire.nix
     ../../modules/xdg-portal.nix
     ../../modules/security.nix
+    ../../modules/autologin.nix
     ./hardware-configuration.nix
   ];
 

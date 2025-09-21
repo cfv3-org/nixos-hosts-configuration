@@ -33,6 +33,7 @@
           inherit system;
           specialArgs = {
             inherit vscode-server;
+            userName = "vasary";
           };
           modules = [
             ./hosts/workbench/configuration.nix
@@ -50,6 +51,9 @@
 
         workstation = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = {
+            userName = "vasary";
+          };
           modules = [
             ./hosts/workstation/configuration.nix
 

@@ -1,12 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, userName, ... }:
 {
   users = {
     mutableUsers = false;
 
-    users = {
-      vasary = {
+    users.${userName} = {
         isNormalUser = true;
-        description = "Vasary";
         extraGroups = [
           "wheel"
           "docker"
@@ -18,6 +16,5 @@
         shell = pkgs.zsh;
         uid = 1000;
       };
-    };
   };
 }
