@@ -112,7 +112,7 @@
   home.file.".config/easyeffects/input/meetings.json".source =
     ./presets/easyeffects/voice_noise_reduction.json;
   home.file.".config/kitty/kitty.conf".source = ./presets/kitty/kitty.conf;
-  home.file."Pictures/Wallpapers/wallpaper.jpg".source = ./../../media/wallpappers/wallpaper.jpg;
+  home.file."Pictures/Wallpapers/wallpaper.jpg".source = ./../../../media/wallpappers/wallpaper.jpg;
   home.file.".config/git/ignore".text = ''
     .idea/
     .vscode/
