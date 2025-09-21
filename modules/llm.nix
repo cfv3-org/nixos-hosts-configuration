@@ -4,7 +4,7 @@
   hardware.nvidia-container-toolkit.enable = true;
   virtualisation.oci-containers.containers.ollama = {
     image = "ollama/ollama:latest";
-    autoStart = false;
+    autoStart = true;
     ports = [ "11434:11434" ];
     volumes = [ "ollama:/root/.ollama" ];
     extraOptions = [
@@ -18,7 +18,7 @@
     ports = [ "3000:8080" ];
     volumes = [ "open-webui:/app/backend/data" ];
     extraOptions = [ "--network=host" ];
-    autoStart = false;
+    autoStart = true;
     environment = {
       ENABLE_OLLAMA_API = "True";
       OLLAMA_BASE_URL = "http://127.0.0.1:11434";
