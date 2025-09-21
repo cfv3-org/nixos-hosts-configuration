@@ -32,9 +32,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    pciutils
-    mesa-demos
-    vulkan-tools
+    ollama
+    cudatoolkit
+    nvidia-vaapi-driver
   ];
 
   hardware = {
@@ -90,9 +90,15 @@
     useXkbConfig = true;
   };
 
+
   services = {
     printing.enable = true;
     pulseaudio.enable = false;
+
+    ollama = {
+    enable = false;
+        acceleration = "cuda";
+    };
 
     xserver = {
       enable = true;
@@ -226,11 +232,7 @@
   '';
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.cudaSupport = true;
 
   system.stateVersion = "25.05";
 }
-
-36299104178767417451
-
-46820599215768636746
-

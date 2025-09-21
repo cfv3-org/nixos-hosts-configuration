@@ -99,6 +99,10 @@
       kitty
 
       lollypop
+
+          pciutils
+          mesa-demos
+          vulkan-tools
     ];
   };
 
@@ -123,20 +127,22 @@
       enable = true;
       package = pkgs.vscode;
 
-      extensions = with pkgs.vscode-extensions; [
-        bmewburn.vscode-intelephense-client
-        xdebug.php-debug
-       
-        yzhang.markdown-all-in-one
-        davidanson.vscode-markdownlint
-        jnoortheen.nix-ide
-      ];
+      profiles.default = {
+        extensions = with pkgs.vscode-extensions; [
+          bmewburn.vscode-intelephense-client
+          xdebug.php-debug
 
-      userSettings = {
-        "php.validate.enable" = false;
-        "php.suggest.basic" = false;
-        "editor.formatOnSave" = true;
-        "intelephense.format.enable" = true;
+          yzhang.markdown-all-in-one
+          davidanson.vscode-markdownlint
+          jnoortheen.nix-ide
+        ];
+
+        userSettings = {
+          "php.validate.enable" = false;
+          "php.suggest.basic" = false;
+          "editor.formatOnSave" = true;
+          "intelephense.format.enable" = true;
+        };
       };
     };
 
@@ -196,6 +202,8 @@
 
       initContent = ''
         export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+        export OLLAMA_USE_GPU=1
+        export OLLAMA_DEBUG=1
         eval "$(direnv hook zsh)"
       '';
 
