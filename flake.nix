@@ -58,13 +58,16 @@
             ./hosts/workstation/configuration.nix
 
             home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.vasary = import ./home/vasary/workstation.nix;
-              };
-            }
+            (
+              { userName, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.${userName} = import ./home/${userName}/workstation.nix;
+                };
+              }
+            )
           ];
         };
       };

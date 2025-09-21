@@ -1,4 +1,8 @@
-{ pkgs, config, userName, ... }:
+{
+  pkgs,
+  userName,
+  ...
+}:
 
 {
   services = {
