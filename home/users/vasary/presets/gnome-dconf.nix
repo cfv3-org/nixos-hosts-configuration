@@ -137,7 +137,7 @@
     "org/gnome/shell/extensions/vitals" = {
       fixed-widths = true;
       hide-zeros = false;
-      icon-style = 0;
+      icon-style = 1;
       include-static-gpu-info = true;
       memory-measurement = 1;
       menu-centered = true;
@@ -152,6 +152,7 @@
       show-voltage = false;
       update-time = 2;
       use-higher-precision = false;
+      hide-icons = false;
     };
     "org/gnome/desktop/applications/media" = {
       player = "org.gnome.Lollypop.desktop";
@@ -274,10 +275,9 @@
       ];
     };
     "org/gnome/desktop/session" = {
-      idle-delay = 0; # 0 = никогда
+      idle-delay = 0;
     };
 
-    # Настройки питания
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
       sleep-inactive-ac-type = "nothing";

@@ -13,8 +13,6 @@
     ../../modules/users.nix
     ../../modules/i18n.nix
     ../../modules/no-sleep.nix
-    ../../modules/mount-warehouse.nix
-    ../../modules/mount-music.nix
     ../../modules/timezone.nix
     ../../modules/games.nix
     ../../modules/cfv3-resolved.nix
@@ -23,6 +21,9 @@
     ../../modules/xdg-portal.nix
     ../../modules/security.nix
     ../../modules/autologin.nix
+    ../../modules/mount/warehouse.nix
+    ../../modules/mount/music.nix
+    ../../modules/mount/projects.nix
     ./hardware-configuration.nix
   ];
 
