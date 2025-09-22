@@ -8,11 +8,6 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -20,7 +15,6 @@
       self,
       nixpkgs,
       home-manager,
-      vscode-server,
       ...
     }:
     let
@@ -29,26 +23,6 @@
     in
     {
       nixosConfigurations = {
-        workbench = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit vscode-server;
-            userName = "vasary";
-          };
-          modules = [
-            ./hosts/workbench/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.vasary = import ./home/users/vasary/home.nix;
-              };
-            }
-          ];
-        };
-
         workstation = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
