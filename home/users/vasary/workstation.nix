@@ -184,6 +184,9 @@
         # Bitwarden
         "nngceckbapebfimnlniiiahkandclblb"
       ];
+      commandLineArgs = [
+        "--disable-features=PasswordManagerOnboarding,AutofillServerCommunication,AutofillPaymentCardBenefits,AutofillPaymentCvcStorage"
+      ];
     };
 
     git = {
