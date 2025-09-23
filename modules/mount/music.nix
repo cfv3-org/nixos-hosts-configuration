@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, userName, ... }:
 
 {
-  fileSystems."/home/vasary/Music" = {
+  fileSystems."/home/${userName}/Music" = {
     device = "10.10.0.4:/mnt/archive/media/music";
     fsType = "nfs";
     options = [

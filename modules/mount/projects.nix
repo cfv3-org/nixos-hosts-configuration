@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, userName, ... }:
 
 {
-  fileSystems."/home/vasary/nas/projects/archive" = {
+  fileSystems."/home/${userName}/nas/projects/archive" = {
     device = "10.10.0.4:/mnt/archive/work/projects";
     fsType = "nfs";
     options = [
