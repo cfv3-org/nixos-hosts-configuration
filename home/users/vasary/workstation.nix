@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  userName,
   ...
 }:
 
@@ -27,8 +28,8 @@
   ];
 
   home = {
-    username = "vasary";
-    homeDirectory = "/home/vasary";
+    username = userName;
+    homeDirectory = "/home/${userName}";
     stateVersion = "25.05";
   };
 

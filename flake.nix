@@ -38,6 +38,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
+                  extraSpecialArgs = { inherit userName; };
                   users.${userName} = import ./home/users/${userName}/workstation.nix;
                 };
               }
