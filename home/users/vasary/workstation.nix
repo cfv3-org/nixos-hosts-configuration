@@ -7,241 +7,32 @@
 
 {
   imports = [
-    ./presets/gnome-dconf.nix
+    ../../modules/utils.nix
+    ../../modules/k8s-utils.nix
+    ../../modules/talos.nix
+    ../../modules/communications.nix
+    ../../modules/ide.nix
+    ../../modules/gaming.nix
+    ../../modules/bitwarden.nix
+    ../../modules/fonts.nix
+    ../../modules/terminal.nix
+    ../../modules/mailing.nix
+    ../../modules/media.nix
+    ../../modules/git.nix
+    ../../modules/wallpaper.nix
+    ../../modules/zsh.nix
+    ../../modules/chromium.nix
+    ../../modules/gnome.nix
+    ../../modules/office.nix
   ];
 
   home = {
     username = "vasary";
     homeDirectory = "/home/vasary";
     stateVersion = "25.05";
-    packages = with pkgs; [
-      curl
-      jq
-      yq
-      helm
-      kubectl
-      helmfile
-      talosctl
-      werf
-      direnv
-      nix-direnv
-      unzip
-      nixfmt-rfc-style
-      htop
-
-      jetbrains.idea-community-bin
-      jetbrains.datagrip
-      jetbrains.phpstorm
-      jetbrains.jdk
-      jetbrains.goland
-
-      telegram-desktop
-      signal-desktop
-      slack
-      zoom-us
-      zapzap
-
-      gnome-extension-manager
-      gnomeExtensions.burn-my-windows
-      gnomeExtensions.clipboard-indicator
-      gnomeExtensions.quick-settings-tweaker
-      gnomeExtensions.appindicator
-      gnomeExtensions.net-speed-simplified
-      gnomeExtensions.bluetooth-battery-meter
-      gnomeExtensions.vitals
-
-      protonup-qt
-      lutris
-      gamemode
-      gamemode.lib
-      mangohud
-      libstrangle
-
-      bitwarden-desktop
-
-      thunderbird-bin
-      libreoffice
-      hunspell
-      hunspellDicts.ru_RU
-      hunspellDicts.en_US
-      hunspellDicts.de_DE
-      hyphen
-
-      flameshot
-      eza
-
-      vim
-      wget
-      git
-      gnupg
-      gnumake
-      dig
-      font-manager
-      pavucontrol
-      easyeffects
-      podman-compose
-      distrobox
-      iw
-
-      jetbrains-mono
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.noto
-      nerd-fonts.hack
-      nerd-fonts.ubuntu
-      nerd-fonts.fantasque-sans-mono
-      nerd-fonts.jetbrains-mono
-      inter
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      fastfetch
-
-      kitty
-
-      lollypop
-
-      pciutils
-      mesa-demos
-      vulkan-tools
-    ];
   };
 
-  fonts.fontconfig.enable = true;
-
-  home.file.".config/easyeffects/input/meetings.json".source =
-    ./presets/easyeffects/voice_noise_reduction.json;
-  home.file.".config/kitty/kitty.conf".source = ./presets/kitty/kitty.conf;
-  home.file."Pictures/Wallpapers/wallpaper.jpg".source = ./../../../media/wallpappers/wallpaper.jpg;
-  home.file.".config/git/ignore".text = ''
-    .idea/
-    .vscode/
-    .direnv/
-  '';
-
-  services.easyeffects.enable = true;
-
   programs = {
-    gnome-shell.enable = true;
     firefox.enable = false;
-
-    vscode = {
-      enable = true;
-      package = pkgs.vscode;
-
-      profiles.default = {
-        extensions = with pkgs.vscode-extensions; [
-          bmewburn.vscode-intelephense-client
-          xdebug.php-debug
-          yzhang.markdown-all-in-one
-          davidanson.vscode-markdownlint
-          jnoortheen.nix-ide
-          rooveterinaryinc.roo-cline
-          streetsidesoftware.code-spell-checker
-        ];
-
-        userSettings = {
-          "workbench.experimental.disableBuiltinExtensions" = [
-            "vscode.php-language-features"
-            "vscode.php"
-          ];
-
-          "editor.bracketPairColorization.enabled" = true;
-          "editor.fontLigatures" =
-            "'calt', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'ss10', 'dlig', 'liga'";
-          "editor.formatOnPaste" = true;
-          "editor.formatOnSave" = true;
-          "editor.formatOnType" = false;
-          "editor.guides.bracketPairs" = true;
-          "editor.guides.indentation" = true;
-          "editor.inlineSuggest.enabled" = true;
-          "editor.minimap.enabled" = false;
-          "editor.minimap.renderCharacters" = false;
-          "editor.overviewRulerBorder" = false;
-          "editor.renderLineHighlight" = "all";
-          "editor.smoothScrolling" = true;
-          "editor.suggestSelection" = "first";
-
-          "breadcrumbs.enabled" = true;
-          "explorer.confirmDelete" = false;
-          "files.trimTrailingWhitespace" = true;
-          "javascript.updateImportsOnFileMove.enabled" = "always";
-          "security.workspace.trust.enabled" = false;
-          "todo-tree.filtering.includeHiddenFiles" = true;
-          "typescript.updateImportsOnFileMove.enabled" = "always";
-          "vsicons.dontShowNewVersionMessage" = true;
-          "window.nativeTabs" = true;
-          "window.restoreWindows" = "all";
-
-          "roo-cline.allowedCommands" = [ "*" ];
-        };
-      };
-    };
-
-    chromium = {
-      enable = true;
-      extensions = [
-        # Bitwarden
-        "nngceckbapebfimnlniiiahkandclblb"
-      ];
-      commandLineArgs = [
-        "--disable-features=PasswordManagerOnboarding,AutofillServerCommunication,AutofillPaymentCardBenefits,AutofillPaymentCvcStorage"
-      ];
-    };
-
-    git = {
-      enable = true;
-      userName = "Viktor Gievoi";
-      userEmail = "gievoi.v@gmail.com";
-      extraConfig = {
-        pull.rebase = true;
-        merge.ff = "only";
-        init.defaultBranch = "main";
-        push.default = "current";
-        color.ui = "auto";
-        core.autocrlf = "input";
-        fetch.prune = true;
-        rebase.autoStash = true;
-        core.excludesFile = "~/.config/git/ignore";
-      };
-    };
-
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      syntaxHighlighting = {
-        enable = true;
-      };
-      autocd = true;
-
-      shellAliases = {
-        k = "kubectl";
-        ll = "eza --icons=always -l";
-        docker-compose = "podman-compose";
-      };
-
-      history = {
-        append = true;
-        extended = true;
-        ignoreAllDups = true;
-      };
-
-      initContent = ''
-        export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
-        export OLLAMA_USE_GPU=1
-        export OLLAMA_DEBUG=1
-        eval "$(direnv hook zsh)"
-      '';
-
-      oh-my-zsh = {
-        enable = true;
-        theme = "robbyrussell";
-        plugins = [
-          "git"
-          "sudo"
-          "colored-man-pages"
-        ];
-      };
-    };
   };
 }

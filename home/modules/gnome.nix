@@ -1,10 +1,26 @@
 {
+  pkgs,
   lib,
   config,
   ...
 }:
 
 {
+  home.packages = [
+    pkgs.gnome-extension-manager
+    pkgs.gnomeExtensions.burn-my-windows
+    pkgs.gnomeExtensions.clipboard-indicator
+    pkgs.gnomeExtensions.quick-settings-tweaker
+    pkgs.gnomeExtensions.appindicator
+    pkgs.gnomeExtensions.net-speed-simplified
+    pkgs.gnomeExtensions.bluetooth-battery-meter
+    pkgs.gnomeExtensions.vitals
+  ];
+
+  programs = {
+    gnome-shell.enable = true;
+  };
+
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
       num-workspaces = 4;
