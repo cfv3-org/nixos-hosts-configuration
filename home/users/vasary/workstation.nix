@@ -23,6 +23,7 @@
     ../../modules/wallpaper.nix
     ../../modules/zsh.nix
     ../../modules/chromium.nix
+    ../../modules/firefox.nix
     ../../modules/gnome.nix
     ../../modules/office.nix
   ];
@@ -31,9 +32,5 @@
     username = userName;
     homeDirectory = "/home/${userName}";
     stateVersion = "25.05";
-  };
-
-  programs = {
-    firefox.enable = false;
   };
 }
