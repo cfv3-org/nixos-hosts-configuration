@@ -1,10 +1,26 @@
 {
+  pkgs,
   lib,
   config,
   ...
 }:
 
 {
+  home.packages = [
+    pkgs.gnome-extension-manager
+    pkgs.gnomeExtensions.burn-my-windows
+    pkgs.gnomeExtensions.clipboard-indicator
+    pkgs.gnomeExtensions.quick-settings-tweaker
+    pkgs.gnomeExtensions.appindicator
+    pkgs.gnomeExtensions.net-speed-simplified
+    pkgs.gnomeExtensions.bluetooth-battery-meter
+    pkgs.gnomeExtensions.vitals
+  ];
+
+  programs = {
+    gnome-shell.enable = true;
+  };
+
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
       num-workspaces = 4;
@@ -137,7 +153,7 @@
     "org/gnome/shell/extensions/vitals" = {
       fixed-widths = true;
       hide-zeros = false;
-      icon-style = 0;
+      icon-style = 1;
       include-static-gpu-info = true;
       memory-measurement = 1;
       menu-centered = true;
@@ -152,6 +168,7 @@
       show-voltage = false;
       update-time = 2;
       use-higher-precision = false;
+      hide-icons = false;
     };
     "org/gnome/desktop/applications/media" = {
       player = "org.gnome.Lollypop.desktop";
@@ -272,6 +289,21 @@
           ])
         ])
       ];
+    };
+    "org/gnome/desktop/session" = {
+      idle-delay = 0;
+    };
+
+    "org/gnome/settings-daemon/plugins/power" = {
+      idle-dim = false;
+      sleep-inactive-ac-type = "nothing";
+      sleep-inactive-ac-timeout = 0;
+      sleep-inactive-battery-type = "nothing";
+      sleep-inactive-battery-timeout = 0;
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      lock-enabled = false;
     };
   };
 }

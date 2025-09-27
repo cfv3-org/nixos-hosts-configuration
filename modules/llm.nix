@@ -1,0 +1,30 @@
+{ pkgs, ... }:
+
+{
+  hardware.nvidia-container-toolkit.enable = true;
+  virtualisation.oci-containers.containers.ollama = {
+    image = "ollama/ollama:latest";
+    autoStart = true;
+    ports = [ "11434:11434" ];
+    volumes = [ "ollama:/root/.ollama" ];
+    extraOptions = [
+      "--gpus=all"
+      "--network=host"
+    ];
+  };
+
+  virtualisation.oci-containers.containers.open-webui = {
+    image = "ghcr.io/open-webui/open-webui:main";
+    ports = [ "3000:8080" ];
+    volumes = [ "open-webui:/app/backend/data" ];
+    extraOptions = [ "--network=host" ];
+    autoStart = true;
+    environment = {
+      ENABLE_OLLAMA_API = "True";
+      OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+      OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
+      WEBUI_AUTH = "False";
+      WEBUI_NAME = "LLM @ Home";
+    };
+  };
+}
