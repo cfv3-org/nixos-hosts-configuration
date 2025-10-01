@@ -26,26 +26,28 @@ in
     enable = true;
     policies = {
       Homepage = {
-        URL = "https://kagi.com";
+        URL = "https://start.cfv3.org";
       };
       Preferences = {
         "media.ffmpeg.vaapi.enabled" = true;
         "gfx.webrender.all" = true;
+        "media.hardware-video-decoding.force-enabled" = true;
+        "layers.acceleration.force-enabled" = true;
       };
       PromptForDownloadLocation = true;
       SearchEngines = {
         Add = [
           {
-            Description = "Kagi";
-            IconURL = "https://assets.kagi.com/v2/apple-touch-icon.png";
+            Description = "DuckDuckGo";
+            IconURL = "https://duckduckgo.com/favicon.ico";
             Method = "GET";
-            Name = "Kagi";
-            SuggestURLTemplate = "https://kagi.com/api/autosuggest?q={searchTerms}";
-            URLTemplate = "https://kagi.com/search?q={searchTerms}";
+            Name = "DuckDuckGo";
+            SuggestURLTemplate = "https://duckduckgo.com/ac/?q={searchTerms}";
+            URLTemplate = "https://duckduckgo.com/?q={searchTerms}";
           }
         ];
-        Default = "Kagi";
-        DefaultPrivate = "ddg";
+        Default = "DuckDuckGo";
+        DefaultPrivate = "DuckDuckGo";
         Remove = [
           "Bing"
           "eBay"
@@ -54,14 +56,6 @@ in
       };
 
       ExtensionSettings = mkFirefoxAddons [
-        {
-          name = "kagi-privacy-pass";
-          id = "privacypass@kagi.com";
-        }
-        {
-          name = "h264ify";
-          id = "jid1-TSgSxBhncsPBWQ@jetpack";
-        }
         {
           name = "ublock-origin";
           id = "uBlock0@raymondhill.net";
@@ -108,6 +102,7 @@ in
       DisableFirefoxStudies = true;
       DisablePocket = true;
       DisableFirefoxAccounts = true;
+      ExtensionUpdate = true;
     };
   };
 }
