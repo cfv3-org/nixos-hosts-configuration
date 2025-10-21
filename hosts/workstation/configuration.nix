@@ -25,7 +25,6 @@
     ../../modules/bluetooth.nix
     ../../modules/frimware.nix
     ../../modules/printing.nix
-    ../../modules/printer/xerox3020/printer.nix
     ../../modules/mount/warehouse.nix
     ../../modules/mount/music.nix
     ../../modules/mount/projects.nix

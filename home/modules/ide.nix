@@ -2,15 +2,21 @@
 
 {
   home.packages = [
-    pkgs.jetbrains.idea-community-bin
+    pkgs.jetbrains.jdk
+    pkgs.jetbrains.idea-ultimate
     pkgs.jetbrains.datagrip
     pkgs.jetbrains.phpstorm
-    pkgs.jetbrains.jdk
     pkgs.jetbrains.goland
+    pkgs.jetbrains.webstorm
     pkgs.direnv
     pkgs.nix-direnv
     pkgs.nixfmt-rfc-style
   ];
+
+  xdg.configFile."JetBrainsPlugins/ide-eval-resetter-1.0.0.zip".source = pkgs.fetchurl {
+    url = "https://github.com/SamHoque/ide-eval-resetter/releases/download/v1.0.0/ide-eval-resetter-1.0.0.zip";
+    sha256 = "sha256-4hrzZ/idl+27HUI3xDTiOXcmlij5YORITBAK3B+enGo=";
+  };
 
   programs = {
     vscode = {

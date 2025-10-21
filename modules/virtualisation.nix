@@ -5,5 +5,6 @@
     autoPrune.enable = true;
     dockerCompat = true;
     dockerSocket.enable = true;
+    rootless.enable = true;
   };
 }

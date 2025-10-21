@@ -26,7 +26,7 @@ in
     enable = true;
     policies = {
       Homepage = {
-        URL = "https://start.cfv3.org";
+        URL = "http://start.cfv3.org";
       };
       Preferences = {
         "media.ffmpeg.vaapi.enabled" = true;

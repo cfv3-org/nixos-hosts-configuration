@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nur.url = "github:nix-community/NUR";
+#    nur.url = "github:nix-community/NUR";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -16,14 +16,14 @@
       self,
       nixpkgs,
       home-manager,
-      nur,
+#      nur,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ nur.overlay ];
+#        overlays = [ nur.overlay ];
         config = {
           allowUnfree = true;
         };
