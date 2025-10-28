@@ -21,6 +21,7 @@
     pkgs.easyeffects
     pkgs.podman-compose
     pkgs.distrobox
+    pkgs.ventoy-full
   ];
 
   home.file.".config/easyeffects/input/meetings.json".source =

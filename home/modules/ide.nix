@@ -9,6 +9,7 @@
     pkgs.jetbrains.goland
     pkgs.jetbrains.webstorm
     pkgs.direnv
+    pkgs.insomnia
     pkgs.nix-direnv
     pkgs.nixfmt-rfc-style
   ];
