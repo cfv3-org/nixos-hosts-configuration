@@ -23,9 +23,8 @@
     ../../modules/security.nix
     ../../modules/autologin.nix
     ../../modules/bluetooth.nix
-    ../../modules/frimware.nix
+    ../../modules/frimware-intel.nix
     ../../modules/printing.nix
-    ../../modules/mount/warehouse.nix
     ../../modules/mount/music.nix
     ../../modules/mount/projects.nix
     ./hardware-configuration.nix

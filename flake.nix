@@ -35,7 +35,30 @@
             userName = "vasary";
           };
           modules = [
-            ./hosts/workstation/configuration.nix
+            ./hosts/ms01/configuration.nix
+
+            home-manager.nixosModules.home-manager
+            (
+              { userName, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = { inherit userName; };
+                  users.${userName} = import ./home/users/${userName}/workstation.nix;
+                };
+              }
+            )
+          ];
+        };
+
+        t1 = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = {
+            userName = "vasary";
+          };
+          modules = [
+            ./hosts/t1/configuration.nix
 
             home-manager.nixosModules.home-manager
             (
