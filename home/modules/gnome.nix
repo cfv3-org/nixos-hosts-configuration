@@ -42,7 +42,6 @@
       ];
       xkb-options = [ "grp:alt_space_toggle" ];
     };
-
     "org/gnome/desktop/interface" = {
       clock-show-seconds = true;
       clock-show-date = true;
@@ -55,6 +54,14 @@
     };
     "org/gnome/desktop/sound" = {
       event-sounds = false;
+    };
+    "org/gnome/shell/extensions/burn-my-windows" = {
+      "active-profile" =
+        "${config.home.homeDirectory}/.config/burn-my-windows/profiles/1756902230638440.conf";
+      "last-extension-version" = 46;
+      "last-prefs-version" = 46;
+      "prefs-open-count" = 5;
+      "preview-effect" = "";
     };
     "org/gnome/shell/extensions/clipboard-indicator" = {
       cache-size = 50;
@@ -115,6 +122,11 @@
         "netspeedsimplified@prateekmedia.extension"
         "Vitals@CoreCoding.com"
       ];
+      favorite-apps = [
+        "firefox.desktop"
+        "org.gnome.Terminal.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
     };
     "org/gnome/shell/keybindings" = {
       screenshot = [ ];
@@ -150,6 +162,17 @@
       picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
       picture-options = "zoom";
     };
+    "org/gnome/shell/extensions/simple-weather" = {
+      "is-activated" = true;
+      "locations" = [
+        (lib.hm.gvariant.mkVariant (
+          lib.hm.gvariant.mkTuple [
+            (lib.hm.gvariant.mkString "{\"name\":\"Leipzig\",\"lat\":51.3396,\"lon\":12.3713}")
+          ]
+        ))
+      ];
+      "unit-preset" = "metric";
+    };
     "org/gnome/shell/extensions/vitals" = {
       fixed-widths = true;
       hide-zeros = false;
@@ -169,6 +192,7 @@
       update-time = 2;
       use-higher-precision = false;
       hide-icons = false;
+      alphabetize = false;
     };
     "org/gnome/desktop/applications/media" = {
       player = "org.gnome.Lollypop.desktop";

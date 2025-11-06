@@ -13,6 +13,8 @@
     ];
   };
 
+  hardware.amdgpu.opencl.enable = true;
+  hardware.amdgpu.rocm.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   environment.variables = {

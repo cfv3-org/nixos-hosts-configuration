@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  hardware.nvidia-container-toolkit.enable = true;
   virtualisation.oci-containers.containers.ollama = {
     image = "ollama/ollama:latest";
     autoStart = true;

@@ -14,10 +14,7 @@
     pkgs.nixfmt-rfc-style
   ];
 
-  xdg.configFile."JetBrainsPlugins/ide-eval-resetter-1.0.0.zip".source = pkgs.fetchurl {
-    url = "https://github.com/SamHoque/ide-eval-resetter/releases/download/v1.0.0/ide-eval-resetter-1.0.0.zip";
-    sha256 = "sha256-4hrzZ/idl+27HUI3xDTiOXcmlij5YORITBAK3B+enGo=";
-  };
+  xdg.configFile."JetBrainsPlugins/ide-eval-resetter-1.0.0.zip".source = ./jetbrains/trial-reset.zip;
 
   programs = {
     vscode = {
@@ -67,7 +64,6 @@
           "vsicons.dontShowNewVersionMessage" = true;
           "window.nativeTabs" = true;
           "window.restoreWindows" = "all";
-
           "roo-cline.allowedCommands" = [ "*" ];
         };
       };

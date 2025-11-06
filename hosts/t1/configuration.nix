@@ -10,7 +10,6 @@
     ../../modules/boot.nix
     ../../modules/nix.nix
     ../../modules/virtualisation.nix
-    ../../modules/llm.nix
     ../../modules/users.nix
     ../../modules/i18n.nix
     ../../modules/no-sleep.nix
