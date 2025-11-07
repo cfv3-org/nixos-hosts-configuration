@@ -1,8 +1,8 @@
 { pkgs, userName, ... }:
 
 {
-  fileSystems."/home/${userName}/nas/projects/archive" = {
-    device = "10.10.0.4:/mnt/archive/work/projects";
+  fileSystems."/home/${userName}/Share" = {
+    device = "10.10.0.4:/mnt/archive/share";
     fsType = "nfs";
     options = [
       "noauto"

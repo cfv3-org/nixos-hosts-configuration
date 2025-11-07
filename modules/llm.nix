@@ -7,9 +7,15 @@
     ports = [ "11434:11434" ];
     volumes = [ "ollama:/root/.ollama" ];
     extraOptions = [
-      "--gpus=all"
+      "--device=/dev/kfd"
+      "--device=/dev/dri"
+      "--group-add=video"
       "--network=host"
     ];
+    environment = {
+      HSA_OVERRIDE_GFX_VERSION = "12.0.1";
+      OLLAMA_DEBUG = "1";
+    };
   };
 
   virtualisation.oci-containers.containers.open-webui = {

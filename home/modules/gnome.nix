@@ -8,7 +8,6 @@
 {
   home.packages = [
     pkgs.gnome-extension-manager
-    pkgs.gnomeExtensions.burn-my-windows
     pkgs.gnomeExtensions.clipboard-indicator
     pkgs.gnomeExtensions.quick-settings-tweaker
     pkgs.gnomeExtensions.appindicator
@@ -17,9 +16,7 @@
     pkgs.gnomeExtensions.vitals
   ];
 
-  programs = {
-    gnome-shell.enable = true;
-  };
+  programs.gnome-shell.enable = true;
 
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
@@ -54,14 +51,6 @@
     };
     "org/gnome/desktop/sound" = {
       event-sounds = false;
-    };
-    "org/gnome/shell/extensions/burn-my-windows" = {
-      "active-profile" =
-        "${config.home.homeDirectory}/.config/burn-my-windows/profiles/1756902230638440.conf";
-      "last-extension-version" = 46;
-      "last-prefs-version" = 46;
-      "prefs-open-count" = 5;
-      "preview-effect" = "";
     };
     "org/gnome/shell/extensions/clipboard-indicator" = {
       cache-size = 50;
@@ -116,17 +105,12 @@
       disable-user-extensions = false;
       enabled-extensions = [
         "quick-settings-tweaks@qwreey"
-        "burn-my-windows@schneegans.github.com"
         "clipboard-indicator@tudmotu.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "netspeedsimplified@prateekmedia.extension"
         "Vitals@CoreCoding.com"
       ];
-      favorite-apps = [
-        "firefox.desktop"
-        "org.gnome.Terminal.desktop"
-        "org.gnome.Nautilus.desktop"
-      ];
+      favorite-apps = [ ];
     };
     "org/gnome/shell/keybindings" = {
       screenshot = [ ];
@@ -161,17 +145,6 @@
     "org/gnome/desktop/background" = {
       picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
       picture-options = "zoom";
-    };
-    "org/gnome/shell/extensions/simple-weather" = {
-      "is-activated" = true;
-      "locations" = [
-        (lib.hm.gvariant.mkVariant (
-          lib.hm.gvariant.mkTuple [
-            (lib.hm.gvariant.mkString "{\"name\":\"Leipzig\",\"lat\":51.3396,\"lon\":12.3713}")
-          ]
-        ))
-      ];
-      "unit-preset" = "metric";
     };
     "org/gnome/shell/extensions/vitals" = {
       fixed-widths = true;
@@ -317,7 +290,6 @@
     "org/gnome/desktop/session" = {
       idle-delay = 0;
     };
-
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
       sleep-inactive-ac-type = "nothing";
@@ -325,7 +297,6 @@
       sleep-inactive-battery-type = "nothing";
       sleep-inactive-battery-timeout = 0;
     };
-
     "org/gnome/desktop/screensaver" = {
       lock-enabled = false;
     };

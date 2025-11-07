@@ -26,7 +26,7 @@ Main development machine for writing code, running containers, and managing proj
 
 ### 1. Build and switch to configuration
 ```bash
-sudo nixos-rebuild switch --flake .#workstation
+sudo nixos-rebuild switch --flake .#t1
 ```
 
 ### 2. Update inputs (nixpkgs, home-manager, etc.)

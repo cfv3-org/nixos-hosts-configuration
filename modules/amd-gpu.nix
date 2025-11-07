@@ -9,13 +9,24 @@
       vaapiVdpau
       libvdpau
       amdvlk
-      rocm-opencl-runtime
+      rocmPackages.clr.icd
+      rocmPackages.rocblas
+      rocmPackages.rocm-smi
+      rocmPackages.rocminfo
     ];
   };
 
-  hardware.amdgpu.opencl.enable = true;
-  hardware.amdgpu.rocm.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
+
+  environment.systemPackages = with pkgs; [
+    rocmPackages.rocminfo
+    rocmPackages.rocm-smi
+  ];
+
+  users.users.vasary.extraGroups = [
+    "video"
+    "render"
+  ];
 
   environment.variables = {
     VDPAU_DRIVER = "radeonsi";

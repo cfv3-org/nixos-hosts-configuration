@@ -14,9 +14,10 @@
     ../../modules/i18n.nix
     ../../modules/no-sleep.nix
     ../../modules/timezone.nix
-    ../../modules/games.nix
     ../../modules/cfv3-resolved.nix
     ../../modules/amd-gpu.nix
+    ../../modules/llm.nix
+    ../../modules/trusted.nix
     ../../modules/pipewire.nix
     ../../modules/xdg-portal.nix
     ../../modules/security.nix
@@ -25,7 +26,7 @@
     ../../modules/frimware-amd.nix
     ../../modules/printing.nix
     ../../modules/mount/music.nix
-    ../../modules/mount/projects.nix
+    ../../modules/mount/share.nix
     ./hardware-configuration.nix
   ];
 
