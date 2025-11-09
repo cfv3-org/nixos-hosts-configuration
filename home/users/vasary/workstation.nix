@@ -13,7 +13,6 @@
     ../../modules/talos.nix
     ../../modules/communications.nix
     ../../modules/ide.nix
-    ../../modules/gaming.nix
     ../../modules/bitwarden.nix
     ../../modules/fonts.nix
     ../../modules/terminal.nix

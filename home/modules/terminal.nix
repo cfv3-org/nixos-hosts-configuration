@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.kitty
+  home.packages = with pkgs; [
+    blackbox-terminal
   ];
-
-  home.file.".config/kitty/kitty.conf".source = ./presets/kitty/kitty.conf;
 }

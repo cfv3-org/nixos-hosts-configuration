@@ -27,6 +27,7 @@
     ../../modules/printing.nix
     ../../modules/mount/music.nix
     ../../modules/mount/share.nix
+    ../../modules/grub/os-entry.nix
     ./hardware-configuration.nix
   ];
 
@@ -46,7 +47,14 @@
     desktopManager.gnome.enable = true;
   };
 
-  programs.zsh.enable = true;
+  boot.loader.grub.osEntry = {
+    enable = true;
+    title = "Bazzite OS";
+    class = "fedora";
+    uuid = "AD8A-123F";
+    path = "/EFI/fedora/grubx64.efi";
+  };
 
+  programs.zsh.enable = true;
   system.stateVersion = "25.05";
 }

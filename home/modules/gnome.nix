@@ -12,7 +12,6 @@
     pkgs.gnomeExtensions.quick-settings-tweaker
     pkgs.gnomeExtensions.appindicator
     pkgs.gnomeExtensions.net-speed-simplified
-    pkgs.gnomeExtensions.bluetooth-battery-meter
     pkgs.gnomeExtensions.vitals
   ];
 
@@ -25,7 +24,11 @@
     "org/gnome/mutter" = {
       dynamic-workspaces = false;
     };
-
+    "com/raggesilver/BlackBox" = {
+      font = "JetBrainsMonoNL Nerd Font 11";
+      theme-dark = "Japanesque";
+      notify-process-completion = true;
+    };
     "org/gnome/desktop/input-sources" = {
       sources = [
         (lib.hm.gvariant.mkTuple [
@@ -42,6 +45,7 @@
     "org/gnome/desktop/interface" = {
       clock-show-seconds = true;
       clock-show-date = true;
+      enable-animations = true;
       enable-hot-corners = false;
     };
     "org/gnome/desktop/peripherals/mouse" = {
