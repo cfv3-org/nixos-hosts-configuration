@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.talosctl
+  home.packages = with pkgs; [
+    talosctl
   ];
 }

@@ -1,10 +1,10 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.helm
-    pkgs.kubectl
-    pkgs.helmfile
-    pkgs.werf
+  home.packages = with pkgs; [
+    helm
+    kubectl
+    helmfile
+    werf
   ];
 }

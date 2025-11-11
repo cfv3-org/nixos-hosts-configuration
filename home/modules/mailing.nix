@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgsUnstable, ... }:
 
 {
   home.packages = [
-    pkgs.mailspring
+    pkgsUnstable.mailspring
   ];
 
   systemd.user.services.mailspring = {
@@ -12,7 +12,7 @@
     };
 
     Service = {
-      ExecStart = "${pkgs.mailspring}/bin/mailspring --background";
+      ExecStart = "${pkgsUnstable.mailspring}/bin/mailspring --background";
       Restart = "on-failure";
     };
 

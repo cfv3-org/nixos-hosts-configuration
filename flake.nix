@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -14,6 +15,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       ...
     }:
@@ -24,6 +26,13 @@
         config = {
           allowUnfree = true;
           permittedInsecurePackages = [ "ventoy-1.1.05" ];
+        };
+      };
+
+      pkgsUnstable = import nixpkgs-unstable {
+        inherit system;
+        config = {
+          allowUnfree = true;
         };
       };
     in
@@ -58,6 +67,12 @@
             userName = "vasary";
           };
           modules = [
+            (
+              { ... }:
+              {
+                _module.args.pkgsUnstable = pkgsUnstable;
+              }
+            )
             ./hosts/t1/configuration.nix
 
             home-manager.nixosModules.home-manager
@@ -67,7 +82,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit userName; };
+                  extraSpecialArgs = { inherit userName pkgsUnstable; };
                   users.${userName} = import ./home/users/${userName}/workstation.nix;
                 };
               }
