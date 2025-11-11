@@ -2,10 +2,40 @@
 
 {
   home.packages = [
-    pkgs.telegram-desktop
-    pkgs.signal-desktop
-    pkgs.slack
+    pkgsUnstable.telegram-desktop
+    pkgsUnstable.signal-desktop
     pkgsUnstable.zoom-us
-    pkgs.zapzap
+    pkgsUnstable.zapzap
+    pkgs.slack
   ];
+
+  systemd.user.services = {
+    telegram = {
+      Unit = {
+        Description = "Telegram Desktop autostart";
+        After = [ "graphical-session.target" ];
+      };
+      Service = {
+        ExecStart = "${pkgsUnstable.telegram-desktop}/bin/telegram-desktop --startintray --enable-features=WaylandWindowDecorations";
+        Restart = "on-failure";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
+    zapzap = {
+      Unit = {
+        Description = "ZapZap autostart";
+        After = [ "graphical-session.target" ];
+      };
+      Service = {
+        ExecStart = "${pkgsUnstable.zapzap}/bin/zapzap --minimized";
+        Restart = "on-failure";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+  };
 }
