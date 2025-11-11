@@ -2,16 +2,19 @@
 
 {
   home.packages = with pkgs; [
-    jetbrains.jdk
     jetbrains.idea-ultimate
     jetbrains.datagrip
     jetbrains.phpstorm
     jetbrains.goland
     jetbrains.webstorm
+
     direnv
-    insomnia
     nix-direnv
     nixfmt-rfc-style
+
+    pkgsUnstable.jetbrains.jdk
+    pkgsUnstable.insomnia
+    pkgsUnstable.bruno
   ];
 
   xdg.configFile."JetBrainsPlugins/ide-eval-resetter-1.0.0.zip".source = ./jetbrains/trial-reset.zip;
