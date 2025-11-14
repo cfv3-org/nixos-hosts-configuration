@@ -16,7 +16,7 @@
         After = [ "graphical-session.target" ];
       };
       Service = {
-        ExecStart = "${pkgsUnstable.telegram-desktop}/bin/telegram-desktop --startintray --enable-features=WaylandWindowDecorations";
+        ExecStart = "${pkgsUnstable.telegram-desktop}/bin/Telegram -startintray --enable-wayland-ime";
         Restart = "on-failure";
       };
       Install = {
