@@ -22,6 +22,7 @@
     podman-compose
     distrobox
     ventoy-full
+    usbutils
   ];
 
   home.file.".config/easyeffects/input/meetings.json".source =
