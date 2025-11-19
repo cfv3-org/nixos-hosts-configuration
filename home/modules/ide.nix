@@ -13,6 +13,7 @@
     nixfmt-rfc-style
 
     pkgsUnstable.jetbrains.jdk
+    pkgsUnstable.postman
     pkgsUnstable.insomnia
     pkgsUnstable.bruno
   ];
