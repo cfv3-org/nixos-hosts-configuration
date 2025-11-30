@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgsUnstable,
   lib,
   ...
 }:
@@ -56,5 +57,12 @@
   };
 
   programs.zsh.enable = true;
+
+    programs.winbox = {
+      enable = true;
+      openFirewall = true;
+      package = pkgsUnstable.winbox4;
+    };
+
   system.stateVersion = "25.05";
 }

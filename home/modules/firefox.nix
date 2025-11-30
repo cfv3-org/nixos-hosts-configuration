@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 let
   mkFirefoxAddons =
     addons:
@@ -23,6 +23,7 @@ let
 in
 {
   programs.firefox = {
+    package = pkgsUnstable.firefox;
     enable = true;
     policies = {
       Homepage = {

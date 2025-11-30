@@ -23,6 +23,7 @@
     distrobox
     ventoy-full
     usbutils
+    bottles
   ];
 
   home.file.".config/easyeffects/input/meetings.json".source =
