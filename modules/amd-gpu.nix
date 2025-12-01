@@ -1,18 +1,19 @@
-{ pkgs, config, ... }:
+{ pkgs, config, userName, ... }:
 
 {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+
     extraPackages = with pkgs; [
       libva
-      vaapiVdpau
+      libva-vdpau-driver
       libvdpau
-      amdvlk
+
       rocmPackages.clr.icd
       rocmPackages.rocblas
-      rocmPackages.rocm-smi
-      rocmPackages.rocminfo
+      rocmPackages.hipblas
+      rocmPackages.hiprt
     ];
   };
 
@@ -23,13 +24,15 @@
     rocmPackages.rocm-smi
   ];
 
-  users.users.vasary.extraGroups = [
+  users.users.${userName}.extraGroups = [
     "video"
     "render"
   ];
 
   environment.variables = {
-    VDPAU_DRIVER = "radeonsi";
     LIBVA_DRIVER_NAME = "radeonsi";
+    VDPAU_DRIVER = "radeonsi";
+    HSA_OVERRIDE_GFX_VERSION = "12.0.0";
+    ROCR_VISIBLE_DEVICES = "0";
   };
 }

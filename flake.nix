@@ -25,7 +25,7 @@
         inherit system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [ "ventoy-1.1.05" ];
+          permittedInsecurePackages = [ "ventoy-1.1.07" ];
         };
       };
 
