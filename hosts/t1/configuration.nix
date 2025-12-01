@@ -26,9 +26,11 @@
     ../../modules/bluetooth.nix
     ../../modules/frimware-amd.nix
     ../../modules/printing.nix
+    ../../modules/no-docs.nix
     ../../modules/mount/music.nix
     ../../modules/mount/share.nix
     ../../modules/grub/os-entry.nix
+    ../../modules/razer/mouse.nix
     ./hardware-configuration.nix
   ];
 
