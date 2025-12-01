@@ -10,4 +10,8 @@
     jack.enable = true;
     wireplumber.enable = true;
   };
+
+  programs.noisetorch = {
+    enable = true;
+  };
 }

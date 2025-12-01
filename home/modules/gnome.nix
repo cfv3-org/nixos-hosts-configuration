@@ -117,35 +117,13 @@
       favorite-apps = [ ];
     };
     "org/gnome/shell/keybindings" = {
-      screenshot = [ ];
-      show-screenshot-ui = [ ];
-      screenshot-window = [ ];
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "Print";
-      command = "script --command 'QT_QPA_PLATFORM=wayland flameshot gui --clipboard' /dev/null";
-      name = "Flameshot GUI";
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Shift>Print";
-      command = "script --command 'QT_QPA_PLATFORM=wayland flameshot full --clipboard -p $HOME/Pictures/Screenshots' /dev/null";
-      name = "Flameshot Full Screen";
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-      binding = "<Alt>Print";
-      command = "script --command 'QT_QPA_PLATFORM=wayland flameshot screen --clipboard -p $HOME/Pictures/Screenshots' /dev/null";
-      name = "Flameshot Current Screen";
+      screenshot = [ "Print" ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
-      ];
+      custom-keybindings = [ ];
     };
+
     "org/gnome/desktop/background" = {
       picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
       picture-options = "zoom";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 
 {
   home.packages = with pkgs; [
@@ -15,19 +15,12 @@
     gnupg
     gnumake
     dig
-    flameshot
     eza
     pavucontrol
-    easyeffects
     podman-compose
     distrobox
     ventoy-full
     usbutils
     bottles
   ];
-
-  home.file.".config/easyeffects/input/meetings.json".source =
-    ./presets/easyeffects/voice_noise_reduction.json;
-
-  services.easyeffects.enable = true;
 }

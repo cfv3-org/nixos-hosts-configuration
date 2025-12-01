@@ -14,9 +14,11 @@
   programs = {
     git = {
       enable = true;
-      userName = "Viktor Gievoi";
-      userEmail = "gievoi.v@gmail.com";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Viktor Gievoi";
+          email = "gievoi.v@gmail.com";
+        };
         pull.rebase = true;
         merge.ff = "only";
         init.defaultBranch = "main";

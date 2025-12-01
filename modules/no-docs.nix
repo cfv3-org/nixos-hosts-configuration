@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-    documentation.enable = false;
+  documentation.enable = false;
 }

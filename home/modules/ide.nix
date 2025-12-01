@@ -11,6 +11,7 @@
     direnv
     nix-direnv
     nixfmt-rfc-style
+    nixfmt-tree
 
     pkgsUnstable.jetbrains.jdk
     pkgsUnstable.postman

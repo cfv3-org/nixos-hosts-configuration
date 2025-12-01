@@ -1,4 +1,9 @@
-{ pkgs, config, userName, ... }:
+{
+  pkgs,
+  config,
+  userName,
+  ...
+}:
 
 {
   hardware.graphics = {
@@ -22,6 +27,7 @@
   environment.systemPackages = with pkgs; [
     rocmPackages.rocminfo
     rocmPackages.rocm-smi
+    libva-utils
   ];
 
   users.users.${userName}.extraGroups = [

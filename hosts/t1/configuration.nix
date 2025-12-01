@@ -44,11 +44,8 @@
     };
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   boot.loader.grub.osEntry = {
     enable = true;
@@ -60,11 +57,13 @@
 
   programs.zsh.enable = true;
 
-    programs.winbox = {
-      enable = true;
-      openFirewall = true;
-      package = pkgsUnstable.winbox4;
-    };
+  programs.winbox = {
+    enable = true;
+    openFirewall = true;
+    package = pkgsUnstable.winbox4;
+  };
+
+  environment.variables.QT_QPA_PLATFORM = "wayland;xcb";
 
   system.stateVersion = "25.05";
 }

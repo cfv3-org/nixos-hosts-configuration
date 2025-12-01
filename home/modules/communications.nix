@@ -30,7 +30,7 @@
         After = [ "graphical-session.target" ];
       };
       Service = {
-        ExecStart = "${pkgsUnstable.zapzap}/bin/zapzap --minimized";
+        ExecStart = "${pkgsUnstable.zapzap}/bin/zapzap --minimized --ozone-platform=wayland --enable-features=WaylandWindowDecorations";
         Restart = "on-failure";
       };
       Install = {
