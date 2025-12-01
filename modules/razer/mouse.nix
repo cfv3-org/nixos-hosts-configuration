@@ -2,7 +2,7 @@
 
 {
   hardware.openrazer = {
-    enable = false;
+    enable = true;
     users = [ userName ];
   };
 
