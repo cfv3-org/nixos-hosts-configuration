@@ -117,7 +117,7 @@
       favorite-apps = [ ];
     };
     "org/gnome/shell/keybindings" = {
-      screenshot = [ "Print" ];
+      show-screenshot-ui = [ "Print" ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
