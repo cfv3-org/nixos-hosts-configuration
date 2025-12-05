@@ -34,6 +34,8 @@ in
         "gfx.webrender.all" = true;
         "media.hardware-video-decoding.force-enabled" = true;
         "layers.acceleration.force-enabled" = true;
+        "media.rmf.disable_audio_video_sync" = true;
+        "media.cubeb.sandbox" = false;
       };
       PromptForDownloadLocation = true;
       SearchEngines = {
