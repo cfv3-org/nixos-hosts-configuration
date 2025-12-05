@@ -1,4 +1,4 @@
-{ pkgs, userName, ... }:
+{ pkgs, pkgsUnstable, userName, ... }:
 {
   users.users.${userName}.extraGroups = [ "podman" ];
   virtualisation.podman = {
@@ -6,5 +6,6 @@
     autoPrune.enable = true;
     dockerCompat = true;
     dockerSocket.enable = true;
+    package = pkgsUnstable.podman;
   };
 }
