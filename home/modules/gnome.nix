@@ -13,6 +13,7 @@
     pkgs.gnomeExtensions.appindicator
     pkgs.gnomeExtensions.net-speed-simplified
     pkgs.gnomeExtensions.vitals
+    pkgs.gnomeExtensions.gsconnect
   ];
 
   programs.gnome-shell.enable = true;
@@ -113,6 +114,7 @@
         "appindicatorsupport@rgcjonas.gmail.com"
         "netspeedsimplified@prateekmedia.extension"
         "Vitals@CoreCoding.com"
+        "gsconnect@andyholmes.github.io"
       ];
       favorite-apps = [ ];
     };
