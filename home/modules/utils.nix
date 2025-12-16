@@ -22,5 +22,6 @@
     ventoy-full
     usbutils
     bottles
+    pkgsUnstable.yandex-cloud
   ];
 }
