@@ -21,7 +21,7 @@
         };
         pull.rebase = true;
         merge.ff = "only";
-        init.defaultBranch = "main";
+        init.defaultBranch = "master";
         push.default = "current";
         color.ui = "auto";
         core.autocrlf = "input";

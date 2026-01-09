@@ -20,7 +20,7 @@
 
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
-      num-workspaces = 4;
+      num-workspaces = 2;
     };
     "org/gnome/mutter" = {
       dynamic-workspaces = false;
@@ -42,6 +42,13 @@
         ])
       ];
       xkb-options = [ "grp:alt_space_toggle" ];
+    };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-to-workspace-1 = [ "<Alt>1" ];
+      switch-to-workspace-2 = [ "<Alt>2" ];
+
+      move-to-workspace-1 = [ "<Shift><Alt>1" ];
+      move-to-workspace-2 = [ "<Shift><Alt>2" ];
     };
     "org/gnome/desktop/interface" = {
       clock-show-seconds = true;
@@ -119,13 +126,14 @@
       favorite-apps = [ ];
     };
     "org/gnome/shell/keybindings" = {
+      switch-to-application-1 = [ ];
+      switch-to-application-2 = [ ];
+
       show-screenshot-ui = [ "Print" ];
     };
-
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [ ];
     };
-
     "org/gnome/desktop/background" = {
       picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
       picture-options = "zoom";

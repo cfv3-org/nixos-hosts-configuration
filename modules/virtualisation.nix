@@ -1,4 +1,9 @@
-{ pkgs, pkgsUnstable, userName, ... }:
+{
+  pkgs,
+  pkgsUnstable,
+  userName,
+  ...
+}:
 {
   users.users.${userName}.extraGroups = [ "podman" ];
   virtualisation.podman = {
@@ -7,5 +12,8 @@
     dockerCompat = true;
     dockerSocket.enable = true;
     package = pkgsUnstable.podman;
+    defaultNetwork.settings = {
+      dns_enabled = true;
+    };
   };
 }
