@@ -5,6 +5,7 @@ in
 {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    blacklistedKernelModules = [ "xpad" ];
 
     loader = {
       systemd-boot.enable = false;
@@ -15,7 +16,7 @@ in
         device = "nodev";
         useOSProber = true;
         configurationLimit = 15;
-        gfxmodeEfi = "1920x1080";
+        gfxmodeEfi = "2056x1440";
         gfxpayloadEfi = "keep";
 
         theme = "${elegantTheme}/grub/themes/Elegant-forest-blur-left-dark";

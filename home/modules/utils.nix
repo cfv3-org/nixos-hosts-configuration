@@ -23,5 +23,6 @@
     usbutils
     bottles
     pkgsUnstable.yandex-cloud
+    pkgsUnstable.audacity
   ];
 }
