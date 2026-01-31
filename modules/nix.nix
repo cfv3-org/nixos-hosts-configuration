@@ -5,7 +5,7 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 1d";
+      options = "--delete-older-than 100d";
     };
     settings = {
       auto-optimise-store = true;
