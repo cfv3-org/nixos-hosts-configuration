@@ -2,7 +2,7 @@
 
 {
     virtualisation.oci-containers.containers.ollama = {
-      image = "ollama/ollama:rocm";
+      image = "ollama/ollama:0.15.3-rocm";
       autoStart = true;
       ports = [ "11434:11434" ];
       volumes = [ "ollama:/root/.ollama" ];
@@ -16,10 +16,12 @@
     };
 
     virtualisation.oci-containers.containers.open-webui = {
-      image = "ghcr.io/open-webui/open-webui:main";
+      image = "ghcr.io/open-webui/open-webui:v0.7.2";
       ports = [ "3000:8080" ];
       volumes = [ "open-webui:/app/backend/data" ];
-      extraOptions = [ "--network=host" ];
+      extraOptions = [
+        "--network=host"
+      ];
       autoStart = true;
       environment = {
         ENABLE_OLLAMA_API = "True";
