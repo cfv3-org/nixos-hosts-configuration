@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, lib, config, ... }:
 
 {
   home.packages = [
@@ -14,6 +9,7 @@
     pkgs.gnomeExtensions.net-speed-simplified
     pkgs.gnomeExtensions.vitals
     pkgs.gnomeExtensions.gsconnect
+    pkgs.gnomeExtensions.bluetooth-battery-meter
   ];
 
   programs.gnome-shell.enable = true;
@@ -32,18 +28,16 @@
     };
     "org/gnome/desktop/input-sources" = {
       sources = [
-        (lib.hm.gvariant.mkTuple [
-          "xkb"
-          "us"
-        ])
-        (lib.hm.gvariant.mkTuple [
-          "xkb"
-          "ru"
-        ])
+        (lib.hm.gvariant.mkTuple [ "xkb" "us"])
+        (lib.hm.gvariant.mkTuple [ "xkb" "ru"])
       ];
-      xkb-options = [ "grp:alt_space_toggle" ];
+      xkb-options = [];
+      per-window = false;
     };
     "org/gnome/desktop/wm/keybindings" = {
+      switch-input-source = [ "<Super>space" ];
+      switch-input-source-backward = [ "<Shift><Super>space" ];
+
       switch-to-workspace-1 = [ "<Alt>1" ];
       switch-to-workspace-2 = [ "<Alt>2" ];
 
@@ -85,6 +79,17 @@
       notifications-enabled = true;
       notifications-hide-when-no-notifications = false;
     };
+    "org/gnome/shell/extensions/Bluetooth-Battery-Meter" = {
+      circle-widget-color = 0;
+      enable-airpods-device = false;
+      enable-gattbas-device = true;
+      enable-upower-level-icon = false;
+      indicator-type = 1;
+      level-bar-position = 1;
+      level-indicator-type = 0;
+      modify-quick-settings = false;
+      sort-devices-by-history = false;
+    };
     "org/gnome/shell/extensions/appindicator" = {
       "icon-brightness" = 0;
       "icon-contrast" = 0;
@@ -122,6 +127,7 @@
         "netspeedsimplified@prateekmedia.extension"
         "Vitals@CoreCoding.com"
         "gsconnect@andyholmes.github.io"
+        "Bluetooth-Battery-Meter@maniacx.github.com"
       ];
       favorite-apps = [ ];
     };
@@ -133,6 +139,8 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [ ];
+      switch-input-source = [ ];
+      switch-input-source-backward = [ ];
     };
     "org/gnome/desktop/background" = {
       picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
