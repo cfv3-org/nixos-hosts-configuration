@@ -32,6 +32,7 @@
     ../../modules/mount/share.nix
     ../../modules/grub/os-entry.nix
     ../../modules/razer/mouse.nix
+    ../../modules/develop/rust.nix
     ./hardware-configuration.nix
   ];
 

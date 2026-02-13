@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   fileSystems."/mnt/warehouse" = {
     device = "/dev/disk/by-uuid/eb1a4d30-9372-4645-b5c6-67004a6df912";

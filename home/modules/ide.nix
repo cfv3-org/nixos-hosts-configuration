@@ -7,6 +7,7 @@
     jetbrains.phpstorm
     jetbrains.goland
     jetbrains.webstorm
+    jetbrains.rust-rover
 
     direnv
     nix-direnv
@@ -15,9 +16,9 @@
 
     pkgsUnstable.jetbrains.jdk
     pkgsUnstable.postman
-  ];
 
-  xdg.configFile."JetBrainsPlugins/ide-eval-resetter-1.0.0.zip".source = ./jetbrains/trial-reset.zip;
+    (pkgs.callPackage ../packages/jb-cleanup { })
+  ];
 
   programs = {
     vscode = {

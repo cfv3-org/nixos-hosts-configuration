@@ -1,22 +1,21 @@
-{ pkgs, userName, ... }:
-
 {
-  fileSystems."/home/${userName}/nfs/Share" = {
+  fileSystems."/mnt/NAS/Share" = {
     device = "10.10.0.4:/mnt/archive/share";
     fsType = "nfs";
     options = [
-      "noauto"
-      "x-systemd.automount"
-      "x-systemd.idle-timeout=30s"
       "_netdev"
+      "nofail"
+      "x-systemd.device-timeout=10s"
       "vers=4.1"
       "proto=tcp"
-      "soft"
+      "hard"
       "timeo=600"
       "retrans=5"
       "nconnect=4"
       "fsc"
       "noatime"
+      "x-gvfs-show"
+      "x-gvfs-name=NAS Share"
     ];
   };
 }

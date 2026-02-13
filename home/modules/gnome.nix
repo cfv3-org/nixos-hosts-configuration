@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   home.packages = [
@@ -28,10 +33,16 @@
     };
     "org/gnome/desktop/input-sources" = {
       sources = [
-        (lib.hm.gvariant.mkTuple [ "xkb" "us"])
-        (lib.hm.gvariant.mkTuple [ "xkb" "ru"])
+        (lib.hm.gvariant.mkTuple [
+          "xkb"
+          "us"
+        ])
+        (lib.hm.gvariant.mkTuple [
+          "xkb"
+          "ru"
+        ])
       ];
-      xkb-options = [];
+      xkb-options = [ ];
       per-window = false;
     };
     "org/gnome/desktop/wm/keybindings" = {

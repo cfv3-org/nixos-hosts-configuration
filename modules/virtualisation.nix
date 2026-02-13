@@ -1,6 +1,12 @@
-{ pkgs, pkgsUnstable, userName, ... }:
 {
-  users.users.${userName}.extraGroups = [ "podman" "vmware" ];
+  pkgs,
+  pkgsUnstable,
+  userName,
+  ...
+}:
+
+{
+  users.users.${userName}.extraGroups = [ "podman" ];
 
   virtualisation.podman = {
     enable = true;
@@ -10,6 +16,4 @@
     package = pkgsUnstable.podman;
     defaultNetwork.settings.dns_enabled = true;
   };
-
-    virtualisation.vmware.host.enable = true;
 }
