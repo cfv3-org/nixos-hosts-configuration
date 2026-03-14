@@ -33,6 +33,9 @@
     ../../modules/grub/os-entry.nix
     ../../modules/razer/mouse.nix
     ../../modules/develop/rust.nix
+    ../../modules/develop/cursor.nix
+    ../../modules/develop/go.nix
+    ../../modules/develop/node.nix
     ./hardware-configuration.nix
   ];
 
@@ -49,6 +52,7 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  boot.loader.grub.default = "Bazzite OS";
   boot.loader.grub.osEntry = {
     enable = true;
     title = "Bazzite OS";

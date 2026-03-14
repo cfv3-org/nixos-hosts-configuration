@@ -1,34 +1,40 @@
 { pkgs, ... }:
 
 {
-  virtualisation.oci-containers.containers.ollama = {
-    image = "ollama/ollama:0.15.3-rocm";
-    autoStart = true;
-    ports = [ "11434:11434" ];
-    volumes = [ "ollama:/root/.ollama" ];
-
-    extraOptions = [
-      "--device=/dev/kfd"
-      "--device=/dev/dri"
-      "--group-add=video"
-      "--network=host"
-    ];
-  };
-
-  virtualisation.oci-containers.containers.open-webui = {
-    image = "ghcr.io/open-webui/open-webui:v0.7.2";
-    ports = [ "3000:8080" ];
-    volumes = [ "open-webui:/app/backend/data" ];
-    extraOptions = [
-      "--network=host"
-    ];
-    autoStart = true;
-    environment = {
-      ENABLE_OLLAMA_API = "True";
-      OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-      OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
-      WEBUI_AUTH = "False";
-      WEBUI_NAME = "LLM @ Home";
-    };
-  };
+#  virtualisation.oci-containers.containers.vllm = {
+#    image = "vllm/vllm-openai-rocm:v0.15.1";
+#    autoStart = true;
+#
+#    volumes = [
+#      "vllm-cache:/root/.cache/huggingface"
+#    ];
+#
+#    ports = ["11433:11433"];
+#
+#    extraOptions = [
+#      "--device=/dev/kfd"
+#      "--device=/dev/dri"
+#      "--group-add=video"
+#      "--security-opt=seccomp=unconfined"
+#      "--ipc=host"
+#    ];
+#
+#    cmd = [
+#      "Qwen/Qwen2.5-Coder-7B-Instruct-AWQ"
+#
+#      "--host" "0.0.0.0"
+#      "--port" "11433"
+#
+#      "--quantization" "awq"
+#      "--gpu-memory-utilization" "0.85"
+#      "--max-model-len" "16384"
+#
+#      "--enable-prefix-caching"
+#      "--trust-remote-code"
+#
+#      "--served-model-name" "qwen-coder"
+#      "--enable-auto-tool-choice"
+#      "--tool-call-parser" "hermes"
+#    ];
+#  };
 }

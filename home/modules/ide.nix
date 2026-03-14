@@ -14,6 +14,8 @@
     nixfmt-rfc-style
     nixfmt-tree
 
+    codex
+
     pkgsUnstable.jetbrains.jdk
     pkgsUnstable.postman
 

@@ -33,7 +33,7 @@
           nixpkgs.config = {
             allowUnfree = true;
             permittedInsecurePackages = [
-              "ventoy-1.1.07"
+              "ventoy-1.1.10"
             ];
           };
         };
@@ -103,6 +103,33 @@
                   extraSpecialArgs = {
                     inherit userName pkgsUnstable;
                   };
+
+                  users.${userName} = import ./home/users/${userName}/workstation.nix;
+                };
+              }
+            )
+          ];
+        };
+
+        openclaw = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            userName = "openclaw";
+          };
+
+          modules = [
+            baseModule
+            ./hosts/openclaw/configuration.nix
+
+            home-manager.nixosModules.home-manager
+            (
+              { userName, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = { inherit userName; };
 
                   users.${userName} = import ./home/users/${userName}/workstation.nix;
                 };

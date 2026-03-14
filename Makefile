@@ -6,6 +6,9 @@ HOST ?= t1
 t1:
 	sudo nixos-rebuild switch --flake .#t1
 
+claw:
+	sudo nixos-rebuild switch --flake .#openclaw --target-host root@10.10.0.250
+
 .PHONY: rebuild
 rebuild:
 	sudo nixos-rebuild switch --flake .#$(HOST)

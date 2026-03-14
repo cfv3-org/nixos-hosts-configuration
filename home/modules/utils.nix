@@ -24,5 +24,8 @@
     bottles
     pkgsUnstable.yandex-cloud
     pkgsUnstable.audacity
+    pkgsUnstable.winboat
+    pkgsUnstable.rpi-imager
+    pkgsUnstable.realvnc-vnc-viewer
   ];
 }
