@@ -30,12 +30,16 @@ in
         URL = "https://google.com";
       };
       Preferences = {
-        "media.ffmpeg.vaapi.enabled" = true;
-        "gfx.webrender.all" = true;
+        "media.ffmpeg.vaapi.enabled" = false;
+        "gfx.webrender.all" = false;
         "media.hardware-video-decoding.force-enabled" = true;
         "layers.acceleration.force-enabled" = true;
         "media.rmf.disable_audio_video_sync" = true;
         "media.cubeb.sandbox" = false;
+        "media.peerconnection.enabled" = true;
+        "media.navigator.video.default_width" = 1920;
+        "media.navigator.video.default_height" = 1080;
+        "media.navigator.video.default_fps" = 30;
       };
       PromptForDownloadLocation = true;
       SearchEngines = {

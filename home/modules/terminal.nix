@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 
 {
   home.packages = with pkgs; [
-    blackbox-terminal
+    pkgsUnstable.blackbox-terminal
   ];
 }

@@ -23,6 +23,13 @@
     }:
     let
       system = "x86_64-linux";
+      mkPkgsUnstable =
+        system:
+        import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
       baseModule =
         { pkgs, ... }:
         {
@@ -38,45 +45,60 @@
           };
         };
 
-    in
-    {
-      nixosConfigurations = {
-        workstation = nixpkgs.lib.nixosSystem {
+      mkHomeManagerModule =
+        extraSpecialArgs:
+        { userName, ... }:
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            inherit extraSpecialArgs;
+
+            users.${userName} = import ./home/users/${userName}/workstation.nix;
+          };
+        };
+
+      mkHost =
+        {
+          hostModule,
+          userName,
+          extraModules ? [ ],
+          extraHomeArgs ? { },
+        }:
+        let
+          pkgsUnstable = mkPkgsUnstable system;
+        in
+        nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = {
-            userName = "vasary";
+            inherit userName;
           };
 
           modules = [
             baseModule
-            ./hosts/ms01/configuration.nix
-
+            (./modules/users + "/${userName}/default.nix")
+          ]
+          ++ extraModules
+          ++ [
+            hostModule
             home-manager.nixosModules.home-manager
-            (
-              { userName, ... }:
+            (mkHomeManagerModule (
               {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = { inherit userName; };
-
-                  users.${userName} = import ./home/users/${userName}/workstation.nix;
-                };
+                inherit userName pkgsUnstable;
               }
-            )
+              // extraHomeArgs
+            ))
           ];
         };
 
-        t1 = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            userName = "vasary";
-          };
-
-          modules = [
-            baseModule
+    in
+    {
+      nixosConfigurations = {
+        t1 = mkHost {
+          hostModule = ./hosts/t1/configuration.nix;
+          userName = "vasary";
+          extraModules = [
             (
               { pkgs, ... }:
               let
@@ -89,53 +111,10 @@
                 _module.args.pkgsUnstable = pkgsUnstable;
               }
             )
-
-            ./hosts/t1/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            (
-              { userName, pkgsUnstable, ... }:
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-
-                  extraSpecialArgs = {
-                    inherit userName pkgsUnstable;
-                  };
-
-                  users.${userName} = import ./home/users/${userName}/workstation.nix;
-                };
-              }
-            )
           ];
-        };
-
-        openclaw = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            userName = "openclaw";
+          extraHomeArgs = {
+            pkgsUnstable = mkPkgsUnstable system;
           };
-
-          modules = [
-            baseModule
-            ./hosts/openclaw/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            (
-              { userName, ... }:
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = { inherit userName; };
-
-                  users.${userName} = import ./home/users/${userName}/workstation.nix;
-                };
-              }
-            )
-          ];
         };
       };
     };

@@ -2,11 +2,11 @@
 
 {
   hardware.openrazer = {
-    enable = true;
+    enable = false;
     users = [ userName ];
   };
 
   environment.systemPackages = with pkgs; [
-    polychromatic
+    # polychromatic
   ];
 }

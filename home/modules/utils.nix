@@ -1,4 +1,10 @@
-{ pkgs, pkgsUnstable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  pkgsUnstable,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -21,11 +27,15 @@
     distrobox
     ventoy-full
     usbutils
-    bottles
+    pkgsUnstable.bottles
     pkgsUnstable.yandex-cloud
     pkgsUnstable.audacity
     pkgsUnstable.winboat
     pkgsUnstable.rpi-imager
     pkgsUnstable.realvnc-vnc-viewer
+    pkgsUnstable.v4l-utils
+    pkgsUnstable.guvcview
+    pkgsUnstable.ffmpeg
+    pkgsUnstable.obsidian
   ];
 }

@@ -11,11 +11,9 @@
     ../../modules/boot.nix
     ../../modules/nix.nix
     ../../modules/virtualisation.nix
-    ../../modules/users.nix
     ../../modules/i18n.nix
     ../../modules/no-sleep.nix
     ../../modules/timezone.nix
-    ../../modules/cfv3-resolved.nix
     ../../modules/amd-gpu.nix
     ../../modules/llm.nix
     ../../modules/trusted.nix
