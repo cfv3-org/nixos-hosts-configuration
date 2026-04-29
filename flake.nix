@@ -7,6 +7,11 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +23,7 @@
       nixpkgs,
       nixpkgs-unstable,
       rust-overlay,
+      sops-nix,
       home-manager,
       ...
     }:
@@ -28,6 +34,13 @@
         import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
+          overlays = [
+            (_final: prev: {
+              openldap = prev.openldap.overrideAttrs (_old: {
+                doCheck = false;
+              });
+            })
+          ];
         };
 
       baseModule =
@@ -72,11 +85,12 @@
           inherit system;
 
           specialArgs = {
-            inherit userName;
+            inherit userName pkgsUnstable;
           };
 
           modules = [
             baseModule
+            sops-nix.nixosModules.sops
             (./modules/users + "/${userName}/default.nix")
           ]
           ++ extraModules
@@ -98,23 +112,6 @@
         t1 = mkHost {
           hostModule = ./hosts/t1/configuration.nix;
           userName = "vasary";
-          extraModules = [
-            (
-              { pkgs, ... }:
-              let
-                pkgsUnstable = import nixpkgs-unstable {
-                  inherit (pkgs) system;
-                  config.allowUnfree = true;
-                };
-              in
-              {
-                _module.args.pkgsUnstable = pkgsUnstable;
-              }
-            )
-          ];
-          extraHomeArgs = {
-            pkgsUnstable = mkPkgsUnstable system;
-          };
         };
       };
     };

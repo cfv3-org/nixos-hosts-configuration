@@ -8,7 +8,7 @@ in
   networking.firewall.allowedTCPPorts = [ 11434 ];
   virtualisation.oci-containers.containers.ollama = {
     image = "ollama/ollama:0.21.1-rocm";
-    autoStart = true;
+    autoStart = false;
     ports = [ "11434:11434" ];
     volumes = [ "ollama:/root/.ollama" ];
     environment = {
@@ -27,7 +27,7 @@ in
 
   virtualisation.oci-containers.containers.open-webui = {
     image = "ghcr.io/open-webui/open-webui:v0.8.12";
-    autoStart = true;
+    autoStart = false;
     ports = [ "3000:8080" ];
     volumes = [ "open-webui:/app/backend/data" ];
     environment = {
@@ -55,17 +55,17 @@ in
       "/home/${userName}/.config/openclaw/.npm-global:/home/node/.npm-global"
       "${obsidianVaultPath}:/vaults/obsidian/tars"
     ];
-    cmd = [ "openclaw" "gateway" "--allow-unconfigured" ];
+    cmd = [
+      "openclaw"
+      "gateway"
+      "--allow-unconfigured"
+    ];
     environment = {
       NODE_ENV = "production";
       TZ = "Europe/Berlin";
-      OLLAMA_API_KEY = "ollama-local";
       HOME = "/home/node";
       NVIDIA_VISIBLE_DEVICES = "void";
-      GEMINI_API_KEY = "AIzaSyBUn4qc4V1TmWC_8kR2Wule4xDmZTvyp80";
-      GATEWAY_TOKEN = "HKLduEqzoH4FZ1";
       OBSIDIAN_VAULT_PATH = "/vaults/obsidian/tars";
-      GOLDAPI_TOKEN = "goldapi-26dsm4r29ls3-io";
     };
     extraOptions = [
       "--network=host"
@@ -74,7 +74,7 @@ in
 
   virtualisation.oci-containers.containers.obsidian-mcp = {
     image = "node:22-alpine";
-    autoStart = true;
+    autoStart = false;
     ports = [ "3102:3102" ];
     volumes = [
       "${obsidianVaultPath}:/vaults/obsidian/tars"

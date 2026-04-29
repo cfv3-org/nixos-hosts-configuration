@@ -15,7 +15,9 @@
     ../../modules/no-sleep.nix
     ../../modules/timezone.nix
     ../../modules/amd-gpu.nix
+    ../../modules/secrets.nix
     ../../modules/llm.nix
+    ../../modules/llamacpp
     ../../modules/trusted.nix
     ../../modules/pipewire.nix
     ../../modules/xdg-portal.nix
