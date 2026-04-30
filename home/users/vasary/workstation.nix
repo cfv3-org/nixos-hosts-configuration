@@ -17,8 +17,10 @@
     ../../modules/bitwarden.nix
     ../../modules/fonts.nix
     ../../modules/terminal.nix
+    ../../modules/online-accounts.nix
     ../../modules/mailing.nix
     ../../modules/media.nix
+    ../../modules/gaming.nix
     ../../modules/git.nix
     ../../modules/wallpaper.nix
     ../../modules/zsh.nix

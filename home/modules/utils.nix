@@ -30,12 +30,8 @@
     pkgsUnstable.bottles
     pkgsUnstable.yandex-cloud
     pkgsUnstable.audacity
-    pkgsUnstable.winboat
     pkgsUnstable.rpi-imager
     pkgsUnstable.realvnc-vnc-viewer
-    pkgsUnstable.v4l-utils
-    pkgsUnstable.guvcview
-    pkgsUnstable.ffmpeg
     pkgsUnstable.obsidian
   ];
 }

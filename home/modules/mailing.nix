@@ -1,23 +1,8 @@
-{ pkgsUnstable, ... }:
+{ ... }:
 
 {
-  home.packages = [
-    pkgsUnstable.mailspring
-  ];
-
-  #  systemd.user.services.mailspring = {
-  #    Unit = {
-  #      Description = "Mailspring Email Client";
-  #      After = [ "graphical-session.target" ];
-  #    };
-  #
-  #    Service = {
-  #      ExecStart = "${pkgsUnstable.mailspring}/bin/mailspring --background";
-  #      Restart = "on-failure";
-  #    };
-  #
-  #    Install = {
-  #      WantedBy = [ "graphical-session.target" ];
-  #    };
-  #  };
+  xdg.mimeApps.defaultApplications = {
+    "x-scheme-handler/mailto" = [ "org.gnome.Geary.desktop" ];
+    "message/rfc822" = [ "org.gnome.Geary.desktop" ];
+  };
 }

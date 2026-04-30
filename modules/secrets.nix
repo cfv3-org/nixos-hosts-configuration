@@ -20,6 +20,9 @@
       "openclaw/gemini_api_key" = { };
       "openclaw/gateway_token" = { };
       "openclaw/goldapi_token" = { };
+      "online_accounts/google_email" = {
+        owner = userName;
+      };
     };
 
     templates."openclaw.env".content = ''

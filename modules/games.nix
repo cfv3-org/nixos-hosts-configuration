@@ -1,28 +1,31 @@
-{ pkgs, ... }:
+{ pkgs, userName, ... }:
 
 {
-  programs = {
-    gamemode = {
-      enable = true;
-      enableRenice = true;
-      settings = {
-        custom = {
-          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
-        };
-        general = {
-          desiredgov = "performance";
-          inhibit_screensaver = 1;
-        };
-      };
-    };
+  systemd.settings.Manager = {
+    DefaultLimitNOFILE = 524288;
+  };
 
-    steam = {
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
+  security.pam.loginLimits = [
+    {
+      domain = userName;
+      type = "hard";
+      item = "nofile";
+      value = "524288";
+    }
+  ];
+
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+    settings = {
+      custom = {
+        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+      };
+      general = {
+        desiredgov = "performance";
+        inhibit_screensaver = 1;
+      };
     };
   };
 }

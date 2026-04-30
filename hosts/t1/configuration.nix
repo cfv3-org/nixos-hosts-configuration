@@ -14,20 +14,26 @@
     ../../modules/i18n.nix
     ../../modules/no-sleep.nix
     ../../modules/timezone.nix
+    ../../modules/maintenance/cleanup.nix
     ../../modules/amd-gpu.nix
     ../../modules/secrets.nix
+    ../../modules/online-accounts.nix
     ../../modules/llm.nix
+    ../../modules/openclaw
     ../../modules/llamacpp
     ../../modules/trusted.nix
     ../../modules/pipewire.nix
+    ../../modules/webcam.nix
     ../../modules/xdg-portal.nix
     ../../modules/security.nix
     ../../modules/autologin.nix
     ../../modules/bluetooth.nix
     ../../modules/frimware-amd.nix
     ../../modules/printing.nix
+    ../../modules/printers/phaser-3020.nix
     ../../modules/no-docs.nix
     ../../modules/kde-connect.nix
+    ../../modules/games.nix
     ../../modules/mount/music.nix
     ../../modules/mount/share.nix
     ../../modules/grub/os-entry.nix

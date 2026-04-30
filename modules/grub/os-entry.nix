@@ -31,6 +31,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    boot.loader.grub.extraEntriesBeforeNixOS = true;
     boot.loader.grub.extraEntries = ''
       menuentry "${cfg.title}" --class ${cfg.class} {
         insmod chain
