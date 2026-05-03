@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   nix = {
@@ -16,7 +16,4 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    nixfmt-tree
-  ];
 }

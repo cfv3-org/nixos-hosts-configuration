@@ -4,9 +4,9 @@ let
   nodejs = pkgs.nodejs_20;
 in
 {
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     nodejs
-    yarn
     pnpm
+    yarn
   ];
 }

@@ -11,10 +11,9 @@ let
   };
 in
 {
-  environment.systemPackages = with pkgs; [
-    rustToolchain
-    pkg-config
+  home.packages = with pkgs; [
     openssl
-    clang
+    pkg-config
+    rustToolchain
   ];
 }

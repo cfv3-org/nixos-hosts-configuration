@@ -6,6 +6,8 @@
       "_netdev"
       "nofail"
       "x-systemd.device-timeout=10s"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=5min"
       "vers=4.1"
       "proto=tcp"
       "hard"

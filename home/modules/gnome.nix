@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 
@@ -152,10 +151,6 @@
       custom-keybindings = [ ];
       switch-input-source = [ ];
       switch-input-source-backward = [ ];
-    };
-    "org/gnome/desktop/background" = {
-      picture-uri = "file://${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper.jpg";
-      picture-options = "zoom";
     };
     "org/gnome/shell/extensions/vitals" = {
       fixed-widths = true;

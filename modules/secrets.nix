@@ -1,16 +1,10 @@
 {
   config,
-  pkgs,
   userName,
   ...
 }:
 
 {
-  environment.systemPackages = with pkgs; [
-    age
-    sops
-  ];
-
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
     age.keyFile = "/home/${userName}/.config/sops/age/keys.txt";

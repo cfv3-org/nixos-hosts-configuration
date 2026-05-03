@@ -25,6 +25,7 @@ in
         model = "samsung/ML-2160.ppd";
         ppdOptions = {
           PageSize = "A4";
+          PageRegion = "A4";
           Resolution = "600dpi";
           MediaType = "Plain";
           InputSlot = "Auto";

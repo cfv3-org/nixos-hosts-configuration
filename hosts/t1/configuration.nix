@@ -19,8 +19,8 @@
     ../../modules/secrets.nix
     ../../modules/online-accounts.nix
     ../../modules/llm.nix
-    ../../modules/openclaw
-    ../../modules/llamacpp
+    ../../modules/openclaw/openclaw.nix
+    ../../modules/llamacpp/llamacpp.nix
     ../../modules/trusted.nix
     ../../modules/pipewire.nix
     ../../modules/webcam.nix
@@ -28,7 +28,7 @@
     ../../modules/security.nix
     ../../modules/autologin.nix
     ../../modules/bluetooth.nix
-    ../../modules/frimware-amd.nix
+    ../../modules/firmware-amd.nix
     ../../modules/printing.nix
     ../../modules/printers/phaser-3020.nix
     ../../modules/no-docs.nix
@@ -38,10 +38,6 @@
     ../../modules/mount/share.nix
     ../../modules/grub/os-entry.nix
     ../../modules/razer/mouse.nix
-    ../../modules/develop/rust.nix
-    ../../modules/develop/cursor.nix
-    ../../modules/develop/go.nix
-    ../../modules/develop/node.nix
     ./hardware-configuration.nix
   ];
 

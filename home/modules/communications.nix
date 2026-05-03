@@ -1,11 +1,25 @@
 { pkgs, pkgsUnstable, ... }:
+let
+  zapzap = pkgsUnstable.symlinkJoin {
+    name = "zapzap-xwayland";
+    paths = [ pkgsUnstable.zapzap ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      rm -f "$out/bin/zapzap"
+      makeWrapper ${pkgsUnstable.zapzap}/bin/zapzap "$out/bin/zapzap" \
+        --set QT_QPA_PLATFORM xcb \
+        --set QTWEBENGINE_CHROMIUM_FLAGS "--ozone-platform=x11" \
+        --set QT_OPENGL desktop
+    '';
+  };
+in
 
 {
   home.packages = [
     pkgsUnstable.telegram-desktop
     pkgsUnstable.signal-desktop
     pkgsUnstable.zoom-us
-    pkgsUnstable.zapzap
+    zapzap
     pkgs.slack
   ];
 
@@ -30,7 +44,7 @@
         After = [ "graphical-session.target" ];
       };
       Service = {
-        ExecStart = "${pkgsUnstable.zapzap}/bin/zapzap --minimized --ozone-platform=wayland --enable-features=WaylandWindowDecorations";
+        ExecStart = "${zapzap}/bin/zapzap --minimized";
         Restart = "on-failure";
       };
       Install = {

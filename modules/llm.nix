@@ -2,8 +2,9 @@
 
 {
   virtualisation.oci-containers.containers.ollama = {
-    image = "ollama/ollama:0.21.1-rocm";
+    image = "ollama/ollama:0.22.0-rocm";
     autoStart = true;
+    networks = [ "podman" ];
     ports = [ "11434:11434" ];
     volumes = [ "ollama:/root/.ollama" ];
     environment = {
@@ -16,24 +17,28 @@
       "--device=/dev/kfd"
       "--device=/dev/dri"
       "--group-add=video"
-      "--network=host"
+      "--network-alias=ollama"
     ];
   };
 
   virtualisation.oci-containers.containers.open-webui = {
     image = "ghcr.io/open-webui/open-webui:v0.8.12";
     autoStart = true;
+    networks = [ "podman" ];
     ports = [ "3000:8080" ];
     volumes = [ "open-webui:/app/backend/data" ];
     environment = {
       ENABLE_OLLAMA_API = "True";
-      OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-      OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
+      ENABLE_OPENAI_API = "True";
+      OLLAMA_BASE_URL = "http://ollama:11434";
+      OLLAMA_API_BASE_URL = "http://ollama:11434/api";
       WEBUI_AUTH = "False";
       WEBUI_NAME = "LLM @ Home";
+      OPENAI_API_BASE_URL = "http://host.containers.internal:11435/v1";
+      OPENAI_API_KEY = "ollama-local";
     };
     extraOptions = [
-      "--network=host"
+      "--network-alias=open-webui"
     ];
   };
 }

@@ -9,7 +9,7 @@ let
   server = {
     apiKey = "ollama-local";
     host = "0.0.0.0";
-    port = 11434;
+    port = 11435;
     primaryModel = "ollama/qwen3.5:9b";
   };
 
@@ -36,27 +36,32 @@ let
   };
   primaryModel = lib.findFirst (model: model.id == server.primaryModel) (builtins.head models) models;
   modelPath = "${modelDir}/${primaryModel.fileName}";
-  fetchModelsScript = lib.concatMapStringsSep "\n" (
-    model:
-    let
-      target = "${modelDir}/${model.fileName}";
-    in
-    ''
-      if [ ! -s ${lib.escapeShellArg target} ]; then
-        echo "Downloading ${model.id} to ${target}"
-        ${pkgs.curl}/bin/curl \
-          --location \
-          --fail \
-          --continue-at - \
-          --output ${lib.escapeShellArg target} \
-          ${lib.escapeShellArg model.url}
-      fi
-    ''
-  ) models;
+  fetchModelsScript = pkgs.writeShellScriptBin "llamacpp-fetch-models" ''
+    set -euo pipefail
+    mkdir -p ${lib.escapeShellArg modelDir}
+    ${lib.concatMapStringsSep "\n" (
+      model:
+      let
+        target = "${modelDir}/${model.fileName}";
+      in
+      ''
+        if [ ! -s ${lib.escapeShellArg target} ]; then
+          echo "Downloading ${model.id} to ${target}"
+          ${pkgs.curl}/bin/curl \
+            --location \
+            --fail \
+            --continue-at - \
+            --output ${lib.escapeShellArg target} \
+            ${lib.escapeShellArg model.url}
+        fi
+      ''
+    ) models}
+  '';
 in
 {
   environment.systemPackages = [
     llamaCpp
+    fetchModelsScript
   ];
 
   networking.firewall.allowedTCPPorts = [
@@ -68,39 +73,19 @@ in
     "d ${modelDir} 0755 ${userName} users - -"
   ];
 
-  systemd.services.llamacpp-fetch-models = {
-    description = "Download llama.cpp GGUF models";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-
-    script = ''
-      mkdir -p ${lib.escapeShellArg modelDir}
-      ${fetchModelsScript}
-    '';
-
-    serviceConfig = {
-      Type = "oneshot";
-      User = userName;
-      Group = "users";
-      WorkingDirectory = configDir;
-    };
-  };
-
   systemd.services.llamacpp = {
     description = "llama.cpp OpenAI-compatible server";
     after = [
       "network-online.target"
-      "llamacpp-fetch-models.service"
     ];
     wants = [ "network-online.target" ];
-    requires = [ "llamacpp-fetch-models.service" ];
 
     environment = {
       LLAMA_API_KEY = server.apiKey;
     };
 
     serviceConfig = {
+      ExecStartPre = "${pkgs.coreutils}/bin/test -s ${lib.escapeShellArg modelPath}";
       ExecStart = lib.concatStringsSep " " [
         "${llamaCpp}/bin/llama-server"
         "--host ${server.host}"

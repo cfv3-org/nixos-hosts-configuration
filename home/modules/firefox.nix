@@ -1,5 +1,10 @@
 { pkgs, pkgsUnstable, ... }:
 let
+  mkFirefoxPreferences = builtins.mapAttrs (_: value: {
+    Value = value;
+    Status = "default";
+  });
+
   mkFirefoxAddons =
     addons:
     let
@@ -14,7 +19,7 @@ let
           "${id}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/${name}/latest.xpi";
             installation_mode = "force_installed";
-            allowed_in_private_browsing = private;
+            private_browsing = private;
           }
           // extraConfig;
         };
@@ -29,14 +34,15 @@ in
       Homepage = {
         URL = "https://google.com";
       };
-      Preferences = {
-        "media.ffmpeg.vaapi.enabled" = false;
-        "gfx.webrender.all" = false;
-        "media.hardware-video-decoding.force-enabled" = true;
-        "layers.acceleration.force-enabled" = true;
-        "media.rmf.disable_audio_video_sync" = true;
-        "media.cubeb.sandbox" = false;
-        "media.peerconnection.enabled" = true;
+      Preferences = mkFirefoxPreferences {
+        "media.ffmpeg.vaapi.enabled" = true;
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+        "privacy.globalprivacycontrol.enabled" = true;
+        "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+        "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.topsites.contile.enabled" = false;
         "media.navigator.video.default_width" = 1920;
         "media.navigator.video.default_height" = 1080;
         "media.navigator.video.default_fps" = 30;
@@ -101,6 +107,11 @@ in
           name = "multi-account-containers";
           id = "@testpilot-containers";
         }
+        {
+          name = "clearurls";
+          id = "{74145f27-f039-47ce-a470-a662b129930a}";
+          private = true;
+        }
       ];
       DisableFormHistory = true;
       OfferToSaveLogins = false;
@@ -110,6 +121,15 @@ in
       DisablePocket = true;
       DisableFirefoxAccounts = true;
       ExtensionUpdate = true;
+      DontCheckDefaultBrowser = true;
+      HttpsOnlyMode = "enabled";
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = false;
+        Cryptomining = true;
+        Fingerprinting = true;
+        EmailTracking = true;
+      };
     };
   };
 }

@@ -14,12 +14,19 @@
     ../../modules/talos.nix
     ../../modules/communications.nix
     ../../modules/ide.nix
+    ../../modules/development/cursor.nix
+    ../../modules/development/go.nix
+    ../../modules/development/node.nix
+    ../../modules/development/rust.nix
     ../../modules/bitwarden.nix
     ../../modules/fonts.nix
     ../../modules/terminal.nix
     ../../modules/online-accounts.nix
     ../../modules/mailing.nix
     ../../modules/media.nix
+    ../../modules/secrets.nix
+    ../../modules/webcam.nix
+    ../../modules/razer.nix
     ../../modules/gaming.nix
     ../../modules/git.nix
     ../../modules/wallpaper.nix
