@@ -19,7 +19,6 @@
     ../../modules/secrets.nix
     ../../modules/online-accounts.nix
     ../../modules/llm.nix
-    ../../modules/openclaw/openclaw.nix
     ../../modules/llamacpp/llamacpp.nix
     ../../modules/trusted.nix
     ../../modules/pipewire.nix
