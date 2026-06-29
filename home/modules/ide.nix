@@ -11,7 +11,7 @@
 
     direnv
     nix-direnv
-    nixfmt-rfc-style
+    nixfmt
     nixfmt-tree
 
     codex

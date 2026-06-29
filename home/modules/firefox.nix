@@ -1,9 +1,11 @@
 { pkgs, pkgsUnstable, ... }:
 let
-  mkFirefoxPreferences = builtins.mapAttrs (_: value: {
-    Value = value;
-    Status = "default";
-  });
+  mkFirefoxPreferences = builtins.mapAttrs (
+    _: value: {
+      Value = value;
+      Status = "default";
+    }
+  );
 
   mkFirefoxAddons =
     addons:
@@ -30,6 +32,7 @@ in
   programs.firefox = {
     package = pkgsUnstable.firefox;
     enable = true;
+    configPath = ".mozilla/firefox";
     policies = {
       Homepage = {
         URL = "https://google.com";

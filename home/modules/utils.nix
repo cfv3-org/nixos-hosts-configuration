@@ -32,6 +32,7 @@
     pkgsUnstable.audacity
     pkgsUnstable.rpi-imager
     pkgsUnstable.realvnc-vnc-viewer
+    pkgsUnstable.filezilla
     pkgsUnstable.obsidian
   ];
 }

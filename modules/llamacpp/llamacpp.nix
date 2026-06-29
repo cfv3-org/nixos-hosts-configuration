@@ -11,7 +11,7 @@ let
     apiKey = "ollama-local";
     host = "0.0.0.0";
     port = 11435;
-    primaryModel = "ollama/qwen2.5-vl:7b";
+    primaryModel = "ollama/gemma4:12b";
   };
 
   models = [
@@ -19,26 +19,6 @@ let
       id = "ollama/qwen3.5:9b";
       fileName = "Qwen_Qwen3.5-9B-Q6_K_L.gguf";
       url = "https://huggingface.co/bartowski/Qwen_Qwen3.5-9B-GGUF/resolve/main/Qwen_Qwen3.5-9B-Q6_K_L.gguf";
-      ctxSize = 196608;
-    }
-    {
-      id = "ollama/qwen3-vl:30b-a3b";
-      fileName = "Qwen3VL-30B-A3B-Instruct-Q4_K_M.gguf";
-      url = "https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct-GGUF/resolve/main/Qwen3VL-30B-A3B-Instruct-Q4_K_M.gguf";
-      mmprojFileName = "mmproj-Qwen3VL-30B-A3B-Instruct-Q8_0.gguf";
-      mmprojUrl = "https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct-GGUF/resolve/main/mmproj-Qwen3VL-30B-A3B-Instruct-Q8_0.gguf";
-      ctxSize = 32768;
-      extraArgs = [
-        "--cache-type-k q8_0"
-        "--cache-type-v q8_0"
-      ];
-    }
-    {
-      id = "ollama/qwen2.5-vl:7b";
-      fileName = "Qwen2.5-VL-7B-Instruct-Q5_K_M.gguf";
-      url = "https://huggingface.co/second-state/Qwen2.5-VL-7B-Instruct-GGUF/resolve/main/Qwen2.5-VL-7B-Instruct-Q5_K_M.gguf";
-      mmprojFileName = "Qwen2.5-VL-7B-Instruct-vision.gguf";
-      mmprojUrl = "https://huggingface.co/second-state/Qwen2.5-VL-7B-Instruct-GGUF/resolve/main/Qwen2.5-VL-7B-Instruct-vision.gguf";
       ctxSize = 196608;
     }
     {

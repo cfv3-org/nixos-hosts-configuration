@@ -22,6 +22,7 @@
     ../../modules/llamacpp/llamacpp.nix
     ../../modules/trusted.nix
     ../../modules/pipewire.nix
+    ../../modules/noise-suppression.nix
     ../../modules/webcam.nix
     ../../modules/xdg-portal.nix
     ../../modules/security.nix
