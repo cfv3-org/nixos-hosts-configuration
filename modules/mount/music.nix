@@ -5,7 +5,12 @@
     options = [
       "_netdev"
       "nofail"
+      "noauto"
+      "rw"
+      "x-systemd.requires=network-online.target"
+      "x-systemd.after=network-online.target"
       "x-systemd.device-timeout=10s"
+      "x-systemd.mount-timeout=10s"
       "x-systemd.automount"
       "x-systemd.idle-timeout=5min"
       "vers=4.1"
