@@ -19,15 +19,23 @@ let
       id = "ollama/qwen3.5:9b";
       fileName = "Qwen_Qwen3.5-9B-Q6_K_L.gguf";
       url = "https://huggingface.co/bartowski/Qwen_Qwen3.5-9B-GGUF/resolve/main/Qwen_Qwen3.5-9B-Q6_K_L.gguf";
-      ctxSize = 196608;
+      ctxSize = 65536;
+      extraArgs = [
+        "--cache-type-k q8_0"
+        "--cache-type-v q8_0"
+      ];
     }
     {
       id = "ollama/gemma4:12b";
-      fileName = "gemma-4-12b-it-Q4_K_M.gguf";
-      url = "https://huggingface.co/unsloth/gemma-4-12b-it-GGUF/resolve/main/gemma-4-12b-it-Q4_K_M.gguf";
+      fileName = "gemma-4-12b-it-UD-Q6_K_XL.gguf";
+      url = "https://huggingface.co/unsloth/gemma-4-12b-it-GGUF/resolve/main/gemma-4-12b-it-UD-Q6_K_XL.gguf";
       mmprojFileName = "mmproj-F16.gguf";
       mmprojUrl = "https://huggingface.co/unsloth/gemma-4-12b-it-GGUF/resolve/main/mmproj-F16.gguf";
-      ctxSize = 262144;
+      ctxSize = 32768;
+      extraArgs = [
+        "--cache-type-k q8_0"
+        "--cache-type-v q8_0"
+      ];
     }
   ];
 

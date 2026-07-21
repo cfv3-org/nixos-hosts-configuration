@@ -27,11 +27,10 @@
     distrobox
     ventoy-full
     usbutils
-    pkgsUnstable.bottles
+    bottles
     pkgsUnstable.yandex-cloud
-    pkgsUnstable.audacity
     pkgsUnstable.rpi-imager
-    pkgsUnstable.realvnc-vnc-viewer
+    #pkgsUnstable.realvnc-vnc-viewer
     pkgsUnstable.filezilla
     pkgsUnstable.obsidian
   ];

@@ -18,7 +18,6 @@
     ../../modules/amd-gpu.nix
     ../../modules/secrets.nix
     ../../modules/online-accounts.nix
-    ../../modules/llm.nix
     ../../modules/llamacpp/llamacpp.nix
     ../../modules/trusted.nix
     ../../modules/pipewire.nix

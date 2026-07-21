@@ -1,26 +1,58 @@
-{ pkgs, pkgsUnstable, ... }:
-
 {
-  home.packages = with pkgs; [
-    jetbrains.idea
-    jetbrains.datagrip
-    jetbrains.phpstorm
-    jetbrains.goland
-    jetbrains.webstorm
-    jetbrains.rust-rover
+  config,
+  lib,
+  pkgs,
+  pkgsUnstable,
+  ...
+}:
 
-    direnv
-    nix-direnv
-    nixfmt
-    nixfmt-tree
-
-    codex
-
-    pkgsUnstable.jetbrains.jdk
-    pkgsUnstable.postman
-
-    (pkgs.callPackage ../packages/jb-cleanup { })
+let
+  jetbrainsPackages = with pkgs.jetbrains; [
+    idea
+    datagrip
+    phpstorm
+    goland
+    webstorm
+    rust-rover
   ];
+
+  jetbrainsManifest = pkgs.writeText "jetbrains-products-manifest" (
+    lib.concatMapStringsSep "\n" toString jetbrainsPackages
+  );
+
+  jetbrainsPostUpdate = pkgs.callPackage ../packages/jb-post-update { };
+in
+{
+  home.packages =
+    jetbrainsPackages
+    ++ (with pkgs; [
+      direnv
+      nix-direnv
+      nixfmt
+      nixfmt-tree
+
+      pkgsUnstable.jetbrains.jdk
+      pkgsUnstable.postman
+
+      (pkgs.callPackage ../packages/jb-cleanup { })
+      jetbrainsPostUpdate
+    ]);
+
+  home.activation.runJetBrainsPostUpdate = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    state_dir="${config.xdg.stateHome}/jetbrains"
+    previous_manifest="$state_dir/products.manifest"
+    current_manifest="${jetbrainsManifest}"
+
+    mkdir -p "$state_dir"
+
+    if [ ! -f "$previous_manifest" ] || ! cmp -s "$current_manifest" "$previous_manifest"; then
+      if ! ${lib.getExe jetbrainsPostUpdate}; then
+        echo "JetBrains post-update script failed: ${lib.getExe jetbrainsPostUpdate}" >&2
+      fi
+
+      cp "$current_manifest" "$previous_manifest"
+    fi
+  '';
 
   programs = {
     vscode = {

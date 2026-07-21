@@ -2,10 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    helm
-    kubectl
-    helmfile
-    lens
-    werf
+    codex
   ];
 }
