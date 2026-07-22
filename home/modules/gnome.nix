@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -17,6 +18,24 @@
   ];
 
   programs.gnome-shell.enable = true;
+
+  xdg.configFile."gtk-3.0/bookmarks" =
+    let
+      homeDir = config.home.homeDirectory;
+    in
+    {
+      force = true;
+      text = ''
+        file://${homeDir}/Projects Projects
+        file://${homeDir}/Documents
+        file://${homeDir}/Music
+        file://${homeDir}/Pictures
+        file://${homeDir}/Videos
+        file://${homeDir}/Downloads
+        file:///mnt/NAS/Share NAS Share
+        file:///mnt/NAS/Music NAS Music
+      '';
+    };
 
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
