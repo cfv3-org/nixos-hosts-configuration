@@ -21,8 +21,7 @@
       "nconnect=4"
       "fsc"
       "noatime"
-      "x-gvfs-show"
-      "x-gvfs-name=NAS Share"
+      "x-gvfs-hide"
     ];
   };
 }
