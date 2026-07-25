@@ -34,7 +34,6 @@ in
       pkgsUnstable.jetbrains.jdk
       pkgsUnstable.postman
 
-      (pkgs.callPackage ../packages/jb-cleanup { })
       jetbrainsPostUpdate
     ]);
 
@@ -50,7 +49,7 @@ in
         echo "JetBrains post-update script failed: ${lib.getExe jetbrainsPostUpdate}" >&2
       fi
 
-      cp "$current_manifest" "$previous_manifest"
+      install -m 0644 "$current_manifest" "$previous_manifest"
     fi
   '';
 

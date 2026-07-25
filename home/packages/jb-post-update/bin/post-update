@@ -1,3 +1,17 @@
 #!/usr/bin/env bash
 
-echo "Hello world" > /dev/null
+PRODUCTS="IntelliJIdea CLion PhpStorm GoLand PyCharm WebStorm Rider DataGrip RubyMine AppCode"
+
+cleanup() {
+  for PRODUCT in $PRODUCTS; do
+    rm -rf "$1/$PRODUCT/eval" 2>/dev/null
+    sed -i'' '/<property name="evlsprt.*" value="[^"]*"/d' "$1/$PRODUCT/options/other.xml" 2>/dev/null
+  done
+}
+
+cleanup ~/.config/JetBrains
+cleanup ~/.cache/JetBrains
+
+sed -i '/<entry key="JetBrains.UserIdOnMachine" value="[^"]*"/d' ~/.java/.userPrefs/prefs.xml
+sed -i '/<entry key="device_id" value="[^"]*"/d' ~/.java/.userPrefs/jetbrains/prefs.xml
+sed -i '/<entry key="user_id_on_machine" value="[^"]*"/d' ~/.java/.userPrefs/jetbrains/prefs.xml

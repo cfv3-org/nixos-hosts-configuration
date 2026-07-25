@@ -34,6 +34,7 @@
         file://${homeDir}/Downloads
         file:///mnt/NAS/Share NAS Share
         file:///mnt/NAS/Music NAS Music
+        file:///mnt/NAS/Movies NAS Movies
       '';
     };
 

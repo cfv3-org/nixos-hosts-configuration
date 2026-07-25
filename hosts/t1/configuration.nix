@@ -34,6 +34,7 @@
     ../../modules/kde-connect.nix
     ../../modules/games.nix
     ../../modules/mount/music.nix
+    ../../modules/mount/movies.nix
     ../../modules/mount/share.nix
     ../../modules/grub/os-entry.nix
     ../../modules/razer/mouse.nix

@@ -12,6 +12,21 @@
     jq
     yq
     htop
+    btop
+    bat
+    ncdu
+    duf
+    iperf3
+    nmap
+    mtr
+    ethtool
+    tcpdump
+    bandwhich
+    nethogs
+    socat
+    dnsutils
+    dust
+    procs
     unzip
     fastfetch
     pciutils
@@ -20,7 +35,6 @@
     wget
     gnupg
     gnumake
-    dig
     eza
     pavucontrol
     podman-compose
@@ -30,8 +44,8 @@
     bottles
     pkgsUnstable.yandex-cloud
     pkgsUnstable.rpi-imager
-    #pkgsUnstable.realvnc-vnc-viewer
     pkgsUnstable.filezilla
     pkgsUnstable.obsidian
+    tree
   ];
 }

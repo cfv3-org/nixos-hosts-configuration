@@ -28,10 +28,11 @@
     ../../modules/online-accounts.nix
     ../../modules/mailing.nix
     ../../modules/media.nix
+    ../../modules/seafile.nix
     ../../modules/secrets.nix
     ../../modules/webcam.nix
     ../../modules/razer.nix
-#    ../../modules/gaming.nix
+    ../../modules/gaming.nix
     ../../modules/git.nix
     ../../modules/wallpaper.nix
     ../../modules/zsh.nix
