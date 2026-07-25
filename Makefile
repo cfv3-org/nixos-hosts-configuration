@@ -18,6 +18,10 @@ help:
 	@printf "  %-18s %s\n" "boot" "Build and activate the selected host on next boot"
 	@printf "  %-18s %s\n" "dry" "Dry-activate the selected host configuration"
 	@printf "  %-18s %s\n" "update" "Update flake inputs"
+	@printf "  %-18s %s\n" "clean-generations" "Delete old user and system generations"
+	@printf "  %-18s %s\n" "optimise-store" "Deduplicate identical files in the Nix store"
+	@printf "  %-18s %s\n" "clean-store" "Clean old generations and optimise the Nix store"
+	@printf "  %-18s %s\n" "space" "Show disk usage hot spots"
 	@printf "\nSecrets:\n"
 	@printf "  %-18s %s\n" "secrets-edit" "Edit encrypted secrets with sops"
 	@printf "  %-18s %s\n" "secrets-decrypt" "Write plaintext secrets to $(SECRETS_PLAIN_FILE)"
@@ -46,6 +50,43 @@ boot:
 .PHONY: dry
 dry:
 	nixos-rebuild dry-activate --flake .#$(HOST)
+
+.PHONY: clean-generations
+clean-generations:
+	nix-collect-garbage -d
+	sudo nix-collect-garbage -d
+
+.PHONY: optimise-store
+optimise-store:
+	sudo nix store optimise
+
+.PHONY: clean-store
+clean-store: clean-generations optimise-store
+
+.PHONY: space
+space:
+	@printf "\nLocal filesystem usage:\n"
+	@df -hT \
+		-x nfs -x nfs4 -x cifs -x smb3 -x fuse.sshfs \
+		-x tmpfs -x devtmpfs -x efivarfs
+	@printf "\nLargest directories under /:\n"
+	@sudo du -xhd1 / 2>/dev/null | sort -h
+	@printf "\nLargest directories under /var:\n"
+	@sudo du -xhd1 /var 2>/dev/null | sort -h
+	@printf "\nLargest directories under $$HOME:\n"
+	@du -xhd1 "$$HOME" 2>/dev/null | sort -h
+	@printf "\nLargest directories under $$HOME/.local:\n"
+	@if [ -d "$$HOME/.local" ]; then du -xhd1 "$$HOME/.local" 2>/dev/null | sort -h; fi
+	@printf "\nLargest directories under $$HOME/.config:\n"
+	@if [ -d "$$HOME/.config" ]; then du -xhd1 "$$HOME/.config" 2>/dev/null | sort -h; fi
+	@printf "\nLargest directories under $$HOME/.cache:\n"
+	@if [ -d "$$HOME/.cache" ]; then du -xhd1 "$$HOME/.cache" 2>/dev/null | sort -h; fi
+	@printf "\nLargest directories under $$HOME/Projects:\n"
+	@if [ -d "$$HOME/Projects" ]; then du -xhd1 "$$HOME/Projects" 2>/dev/null | sort -h; fi
+	@printf "\nLargest directories under $$HOME/Downloads:\n"
+	@if [ -d "$$HOME/Downloads" ]; then du -xhd1 "$$HOME/Downloads" 2>/dev/null | sort -h; fi
+	@printf "\nLargest directories under /nix:\n"
+	@sudo du -xhd1 /nix 2>/dev/null | sort -h
 
 .PHONY: secrets-edit
 secrets-edit:
