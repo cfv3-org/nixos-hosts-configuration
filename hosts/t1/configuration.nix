@@ -18,7 +18,7 @@
     ../../modules/amd-gpu.nix
     ../../modules/secrets.nix
     ../../modules/online-accounts.nix
-    ../../modules/llamacpp/llamacpp.nix
+    ../../modules/llm.nix
     ../../modules/trusted.nix
     ../../modules/pipewire.nix
     ../../modules/noise-suppression.nix

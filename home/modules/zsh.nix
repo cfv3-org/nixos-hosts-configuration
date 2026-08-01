@@ -13,10 +13,9 @@
       k = "kubectl";
       ll = "eza --icons=always -l";
       docker-compose = "podman-compose";
-      llm-on = "llamacpp-start";
-      llm-off = "llamacpp-stop";
-      llm-log = "journalctl -u llamacpp -f -o cat";
-      llm-fetch-models = "llm-fetch-models";
+      llm-on = "ollama-start";
+      llm-off = "ollama-stop";
+      llm-log = "journalctl -u podman-ollama -f -o cat";
     };
 
     history = {
@@ -31,20 +30,23 @@
       export OLLAMA_DEBUG=1
       eval "$(direnv hook zsh)"
 
-      llamacpp-start() {
-        if sudo systemctl start llamacpp.service; then
-          ${pkgs.libnotify}/bin/notify-send "llama.cpp" "Server started"
+      autoload -Uz bracketed-paste-magic
+      zle -N bracketed-paste bracketed-paste-magic
+
+      ollama-start() {
+        if sudo systemctl start podman-ollama.service podman-open-webui.service; then
+          ${pkgs.libnotify}/bin/notify-send "Ollama" "Stack started"
         else
-          ${pkgs.libnotify}/bin/notify-send --urgency=critical "llama.cpp" "Failed to start server"
+          ${pkgs.libnotify}/bin/notify-send --urgency=critical "Ollama" "Failed to start stack"
           return 1
         fi
       }
 
-      llamacpp-stop() {
-        if sudo systemctl stop llamacpp.service; then
-          ${pkgs.libnotify}/bin/notify-send "llama.cpp" "Server stopped"
+      ollama-stop() {
+        if sudo systemctl stop podman-open-webui.service podman-ollama.service; then
+          ${pkgs.libnotify}/bin/notify-send "Ollama" "Stack stopped"
         else
-          ${pkgs.libnotify}/bin/notify-send --urgency=critical "llama.cpp" "Failed to stop server"
+          ${pkgs.libnotify}/bin/notify-send --urgency=critical "Ollama" "Failed to stop stack"
           return 1
         fi
       }
