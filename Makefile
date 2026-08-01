@@ -13,8 +13,9 @@ help:
 	@printf "Usage:\n"
 	@printf "  make <target> [HOST=t1]\n\n"
 	@printf "System:\n"
-	@printf "  %-18s %s\n" "t1" "Switch the t1 host configuration"
-	@printf "  %-18s %s\n" "rebuild" "Switch the selected host configuration"
+	@printf "  %-18s %s\n" "t1" "Build the t1 host configuration for next boot"
+	@printf "  %-18s %s\n" "switch" "Switch to the selected host configuration now"
+	@printf "  %-18s %s\n" "rebuild" "Alias for switch"
 	@printf "  %-18s %s\n" "boot" "Build and activate the selected host on next boot"
 	@printf "  %-18s %s\n" "dry" "Dry-activate the selected host configuration"
 	@printf "  %-18s %s\n" "update" "Update flake inputs"
@@ -28,20 +29,23 @@ help:
 	@printf "  %-18s %s\n" "secrets-encrypt" "Encrypt $(SECRETS_PLAIN_FILE) back to $(SECRETS_FILE)"
 	@printf "  %-18s %s\n" "secrets-clean" "Remove the plaintext secrets file"
 	@printf "\nExamples:\n"
-	@printf "  make rebuild HOST=t1\n"
+	@printf "  make switch HOST=t1\n"
 	@printf "  make secrets-edit\n\n"
 
 .PHONY: t1
 t1:
-	sudo nixos-rebuild switch --flake .#t1
+	sudo nixos-rebuild boot --flake .#t1
 
 .PHONY: update
 update:
 	nix flake update
 
-.PHONY: rebuild
-rebuild:
+.PHONY: switch
+switch:
 	sudo nixos-rebuild switch --flake .#$(HOST)
+
+.PHONY: rebuild
+rebuild: switch
 
 .PHONY: boot
 boot:

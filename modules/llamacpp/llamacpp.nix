@@ -94,15 +94,6 @@ let
   '';
 in
 {
-  imports = [
-    ./mcp/application-tracking.nix
-    ./mcp/memory-service.nix
-    ./mcp/mikrotik.nix
-    ./mcp/paperless.nix
-    ./mcp/pihole.nix
-    ./mcp/sequential-thinking.nix
-  ];
-
   environment.systemPackages = [
     llamaCpp
     fetchModelsScript
